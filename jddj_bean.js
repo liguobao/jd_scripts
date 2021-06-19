@@ -9,13 +9,12 @@ TG群:https://t.me/passerbyb2021
 
 [task_local]
 10 0 * * * https://raw.githubusercontent.com/passerby-b/JDDJ/main/jddj_bean.js
-
+new Env("京东到家鲜豆任务");
 [Script]
 cron "10 0 * * *" script-path=https://raw.githubusercontent.com/passerby-b/JDDJ/main/jddj_bean.js,tag=京东到家鲜豆任务
 
 */
-
-const $ = new Env("京东到家鲜豆任务");
+const $ = new API("京东到家鲜豆任务");
 let ckPath = './jdCookie.js';//ck路径,环境变量:JDDJ_CKPATH
 let cookies = [];
 let thiscookie = '', deviceid = '';
