@@ -488,6 +488,11 @@ function showMsg() {
           'https://msitepp-fm.jd.com/rest/priceprophone/priceProPhoneMenu',
       }
     );
+    if (!jdNotify) {
+      $.msg($.name, '', `京东账号${$.index} ${$.nickName || $.UserName}\n🎉 本次价格保护金额：${
+        $.refundtotalamount
+      }💰`);
+    }
   }
 }
 
