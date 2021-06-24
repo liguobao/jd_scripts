@@ -216,7 +216,7 @@ function harmony_collectScore(timeout = 0) {
   })
 }
 
-function updateShareCodes(url = 'https://raw.githubusercontent.com/yangtingxiao/QuantumultX/master/scripts/jd/jd_lotteryMachine.js') {
+function updateShareCodes(url = 'https://cdn.staticaly.com/gh/yangtingxiao/QuantumultX/master/scripts/jd/jd_lotteryMachine.js') {
   return new Promise(resolve => {
     const options = {
       url: `${url}?${Date.now()}`, "timeout": 10000, headers: {
