@@ -1,4 +1,4 @@
-/**
+/*
  脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
  IOS用户支持京东双账号,NodeJs用户支持N个京东账号
  更新时间：2021-06-21
@@ -6,30 +6,21 @@
 
 ==========Quantumult X==========
 [task_local]
-#京东宠汪汪
-
+#宠汪汪二代目
 15 0-23/2 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js, tag=京东宠汪汪, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdcww.png, enabled=true
 
 ============Loon===========
 [Script]
-
 cron "15 0-23/2 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js,tag=京东宠汪汪
 
 ============Surge==========
 [Script]
-
 京东宠汪汪 = type=cron,cronexp="15 0-23/2 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js
 
 ===============小火箭==========
-
 京东宠汪汪 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js, cronexpr="15 0-23/2 * * *", timeout=3600, enable=true
 
- 完成度 1%，要用的手动执行，先不加cron了
- 默认80，10、20、40、80可选
- export feedNum = 80
- 默认双人跑
- export JD_JOY_teamLevel = 2
- */
+ */ 
 
 const $ = new Env("宠汪汪二代目")
 console.log('\n====================Hello World====================\n')
