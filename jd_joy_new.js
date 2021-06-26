@@ -4,9 +4,18 @@
  更新时间：2021-06-21
  活动入口：京东APP我的-宠汪汪
 
+==========Quantumult X==========
+[task_local]
 #京东宠汪汪
 15 0-23/2 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js, tag=京东宠汪汪, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdcww.png, enabled=true
-
+============Loon===========
+[Script]
+cron "15 0-23/2 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js,tag=京东宠汪汪
+============Surge==========
+[Script]
+京东宠汪汪 = type=cron,cronexp="15 0-23/2 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js
+===============小火箭==========
+京东宠汪汪 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js, cronexpr="15 0-23/2 * * *", timeout=3600, enable=true
 
  完成度 1%，要用的手动执行，先不加cron了
  默认80，10、20、40、80可选
@@ -549,10 +558,6 @@ $.post = injectToRequest($.post.bind($))
       $.isLogin = true;
       $.nickName = '';
       await TotalBean();
-      if (!require('./JS_USER_AGENTS').HelloWorld) {
-        console.log(`\n【京东账号${$.index}】${$.nickName || $.UserName}：运行环境检测失败\n`);
-        continue
-      }
       console.log(`\n开始【京东账号${$.index}】${$.nickName || $.UserName}\n`);
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
