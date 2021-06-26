@@ -1,25 +1,22 @@
-/*
- 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
- IOS用户支持京东双账号,NodeJs用户支持N个京东账号
- 更新时间：2021-06-21
- 活动入口：京东APP我的-宠汪汪
+/* 
+点点券，可以兑换无门槛红包（1元，5元，10元，100元，部分红包需抢购） 
+Last Modified time: 2021-06-21  
+活动入口：京东APP-领券中心/券后9.9-领点点券 [活动地址](https://h5.m.jd.com/babelDiy/Zeus/41Lkp7DumXYCFmPYtU3LTcnTTXTX/index.html) 
+脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js 
+===============Quantumultx=============== 
+[task_local] 
+#点点券 
+15 0-23/2 * * * jd_necklace.js, tag=点点券, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true 
 
-==========Quantumult X==========
-[task_local]
-#宠汪汪二代目
-15 0-23/2 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js, tag=京东宠汪汪, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdcww.png, enabled=true
+================Loon============== 
+[Script] 
+cron "15 0-23/2 * * * " script-path=jd_necklace.js,tag=点点券 
 
-============Loon===========
-[Script]
-cron "15 0-23/2 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js,tag=京东宠汪汪
+===============Surge================= 
+点点券 = type=cron,cronexp="15 0-23/2 * * * ",wake-system=1,timeout=3600,script-path=jd_necklace.js 
 
-============Surge==========
-[Script]
-京东宠汪汪 = type=cron,cronexp="15 0-23/2 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js
-
-===============小火箭==========
-京东宠汪汪 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_joy.js, cronexpr="15 0-23/2 * * *", timeout=3600, enable=true
-
+============小火箭========= 
+点点券 = type=cron,script-path=jd_necklace.js, cronexpr="15 0-23/2 * * * ", timeout=3600, enable=true 
  */ 
 
 const $ = new Env("宠汪汪二代目")
