@@ -2,17 +2,17 @@
 ===============Quantumultx=============== 
 [task_local] 
 #宠汪汪二代目
-15 0-23/2 * * * jd_necklace.js, tag=宠汪汪二代目, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true 
+15 0-23/2 * * * jd_joy_new.js, tag=宠汪汪二代目, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true 
 
 ================Loon============== 
 [Script] 
-cron "15 0-23/2 * * * " script-path=jd_necklace.js,tag=宠汪汪二代目 
+cron "15 0-23/2 * * * " script-path=jd_joy_new.js,tag=宠汪汪二代目 
 
 ===============Surge================= 
-宠汪汪二代目 = type=cron,cronexp="15 0-23/2 * * * ",wake-system=1,timeout=3600,script-path=jd_necklace.js 
+宠汪汪二代目 = type=cron,cronexp="15 0-23/2 * * * ",wake-system=1,timeout=3600,script-path=jd_joy_new.js 
 
 ============小火箭========= 
-宠汪汪二代目 = type=cron,script-path=jd_necklace.js, cronexpr="15 0-23/2 * * * ", timeout=3600, enable=true 
+宠汪汪二代目 = type=cron,script-path=jd_joy_new.js, cronexpr="15 0-23/2 * * * ", timeout=3600, enable=true 
  */ 
 
 const $ = new Env("宠汪汪二代目")
