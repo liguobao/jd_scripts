@@ -489,10 +489,7 @@ function showMsg() {
           'https://msitepp-fm.jd.com/rest/priceprophone/priceProPhoneMenu',
       }
     );
-    
-    await notify.sendNotify(`京东账号${$.index} ${$.nickName || $.UserName}\n🎉 本次价格保护金额：${
-        $.refundtotalamount
-      }💰`);
+    notify.sendNotify(`京东账号${$.index} ${$.nickName || $.UserName}\n🎉 本次价格保护金额：${$.refundtotalamount}💰`);
   }
 }
 
