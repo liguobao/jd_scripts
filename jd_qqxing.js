@@ -113,7 +113,7 @@ $.shareuuid = "e883bbb92d564e2ebd54fa2b27cb8892"
         }
         if (message.length != 0) {
         if ($.isNode()) {
-           await notify.sendNotify("星系牧场", `${message}\n牧场入口：QQ星儿童牛奶京东自营旗舰店->星系牧场\n\n吹水群：https://t.me/wenmouxx`);
+           await notify.sendNotify("星系牧场", `${message}\n牧场入口：QQ星儿童牛奶京东自营旗舰店->星系牧场`);
    }  else {
             $.msg($.name, "", '星系牧场' + message)
         }
