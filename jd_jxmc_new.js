@@ -49,11 +49,11 @@ $.appId = 10028;
 
             const homepageinfo = await GetHomePageInfo();
 				
-            $.log(JSON.stringify(homepageinfo));
-			$.log(`\npetinfo\n`);
-			$.log(JSON.stringify(homepageinfo.petinfo));
-			$.log(`\ncoins\n`);
-			$.log(JSON.stringify(homepageinfo.cow.currstage));
+            //$.log(JSON.stringify(homepageinfo));
+			//$.log(`\npetinfo\n`);
+			//$.log(JSON.stringify(homepageinfo.petinfo));
+			//$.log(`\ncoins\n`);
+			//$.log(JSON.stringify(homepageinfo.cow.currstage));
             if (!JSON.stringify(homepageinfo.cow.currstage)) {
                 console.log(`\n温馨提示：${$.userName} 请先手动完成【新手指导任务】再运行脚本再运行脚本\n`);
                 continue
