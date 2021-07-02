@@ -35,6 +35,8 @@ $.currentCookie = '';
 $.petid = [];
 $.allTask = [];
 $.appId = 10028;
+let nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000);
+let allMessage = ``; 
 
 !(async () => {
     if (!getCookies()) return;
@@ -58,6 +60,10 @@ $.appId = 10028;
                 console.log(`\n温馨提示：${$.userName} 请先手动完成【新手指导任务】再运行脚本再运行脚本\n`);
                 continue
             }
+			$.eggcnt = JSON.stringify(homepageinfo.eggcnt);
+			if ($.isNode() && $.eggcnt >= 100 && nowTimes.getHours() >= 19) {
+				allMessage +=`京东账号${$.index} ${$.userName}\n当前鸡蛋有：${$.eggcnt}个\n可兑换免费商品了\n\n`;
+			}
 
             // 领取金币
             await $.wait(500);
@@ -96,6 +102,9 @@ $.appId = 10028;
     }
     await $.wait(500);
     await showMsg();
+	if ($.isNode() && $.eggcnt >= 100 && nowTimes.getHours() >= 19) {
+		await notify.sendNotify(`${$.name}`, allMessage)
+	}
 })().catch((e) => $.logErr(e))
     .finally(() => $.done());
 
