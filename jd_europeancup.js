@@ -107,7 +107,7 @@ $.shareuuid = ['d73fd7544a29474ca77c91fe41af7055']
 
         if (message.length != 0) {
             if ($.isNode()) {
-                await notify.sendNotify("欧洲狂欢杯", `${message}\n 欧洲杯入口：https://lzdz-isv.isvjcloud.com/dingzhi/hisense/europeancup/activity/7431935?activityId=901100032442101&shareUuid=d73fd7544a29474ca77c91fe41af7055&adsource=null&initHash=/home&shareuserid4minipg=8A+Mf3SBYE8spQtvzQ2VLE7oeVP9kq2pYSH90mYt4m3fwcJlClpxrfmVYaGKuquQkdK3rLBQpEQH9V4tdrrh0w==&shopid=undefined&lng=107.146945&lat=33.255267&sid=cad74d1c843bd47422ae20cadf6fe5aw&un_area=8_573_6627_52446\n\n吹水群：https://t.me/wenmouxx`);
+                await notify.sendNotify("欧洲狂欢杯", `${message}\n\n吹水群：🐏羊毛大作战`);
             } else {
                 $.msg($.name, "", '欧洲狂欢杯' + message)
             }
