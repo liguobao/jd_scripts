@@ -141,6 +141,8 @@ function exchangePage() {
                   //message += `当前现金:${data.data.result.signMoney}元\n已换${data.data.result.cashoutNode}档\n\n`;
 				  var exchange = await accSub(data.data.result.cashNodeAmount , data.data.result.totalMoney);
                   NodeMessage += `京东账号${$.index} ${$.nickName || $.UserName}\n当前现金:${data.data.result.totalMoney}元\n差${exchange}元提现第${data.data.result.cashoutNode}档\n\n`;
+                }else{
+                  NodeMessage += `京东账号${$.index} ${$.nickName || $.UserName}\n当前现金:${data.data.result.totalMoney}元\n可兑换红包使用\n\n`;
                 }
 			}	
           }
