@@ -80,6 +80,9 @@ let allMessage = '', NodeMessage = '';
     if ($.isNode()) await notify.sendNotify($.name, NodeMessage);
     $.msg($.name, '', NodeMessage);
   }
+  if (NodeMessage) {
+      $.msg($.name, '', NodeMessage);
+    }
 })()
     .catch((e) => {
       $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
