@@ -31,6 +31,7 @@ let helpAuthor = false;
 const randomCount = $.isNode() ? 5 : 5;
 let cash_exchange = false;//是否消耗2元红包兑换200京豆，默认否
 const inviteCodes = ['eU9YCKnPLKNkphekgxJx','eU9YaenjZv50927VyHAVgA']
+let nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000); 
 $.authorCode = []
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -41,7 +42,7 @@ if ($.isNode()) {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-let allMessage = '';
+let allMessage = '', NodeMessage = '';
 !(async () => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -74,6 +75,10 @@ let allMessage = '';
   if (allMessage) {
     if ($.isNode() && (process.env.CASH_NOTIFY_CONTROL ? process.env.CASH_NOTIFY_CONTROL === 'false' : !!1)) await notify.sendNotify($.name, allMessage);
     $.msg($.name, '', allMessage);
+  }
+  if (NodeMessage && nowTimes.getHours() >= 20) {
+    if ($.isNode()) await notify.sendNotify($.name, NodeMessage);
+    $.msg($.name, '', NodeMessage);
   }
 })()
     .catch((e) => {
@@ -113,9 +118,56 @@ async function jdCash() {
       console.log(`\n\n现金不够2元，不进行兑换200京豆，`)
     }
   }
+  await exchangePage()
   await index(true)
   // await showMsg()
 }
+function exchangePage() {
+  return new Promise((resolve) => {
+    $.get(taskUrl("cash_mob_exchange",), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+			//console.log(data);
+            if(data.code===0 && data.data.result){
+                if (data.data.result.cashoutNode>0) {
+                  //message += `当前现金:${data.data.result.signMoney}元\n已换${data.data.result.cashoutNode}档\n\n`;
+				  var exchange = await accSub(data.data.result.cashNodeAmount , data.data.result.totalMoney);
+                  NodeMessage += `京东账号${$.index} ${$.nickName || $.UserName}\n当前现金:${data.data.result.totalMoney}元\n差${exchange}元提现第${data.data.result.cashoutNode}档\n\n`;
+                }
+			}	
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
+
+function accSub(arg1, arg2) {
+  var r1, r2, m, n;
+  try {
+    r1 = arg1.toString().split(".")[1].length;
+  } catch (e) {
+    r1 = 0;
+  }
+  try {
+    r2 = arg2.toString().split(".")[1].length;
+  } catch (e) {
+    r2 = 0;
+  }
+  m = Math.pow(10, Math.max(r1, r2)); //last modify by deeka //动态控制精度长度
+  n = r1 >= r2 ? r1 : r2;
+  return ((arg1 * m - arg2 * m) / m).toFixed(n);
+}
+
 function index(info=false) {
   return new Promise((resolve) => {
     $.get(taskUrl("cash_mob_home",), async (err, resp, data) => {
@@ -126,6 +178,8 @@ function index(info=false) {
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
+			//console.log(data);
+			//console.log(data.data.result.tips)
             if(data.code===0 && data.data.result){
               if(info){
                 if (message) {
@@ -179,6 +233,7 @@ function index(info=false) {
     })
   })
 }
+
 async function helpFriends() {
   $.canHelp = true
   for (let code of $.newShareCodes) {
@@ -264,7 +319,7 @@ function getReward(source = 1) {
             if (data.code === 0 && data.data.bizCode === 0) {
               console.log(`领奖成功，${data.data.result.shareRewardTip}【${data.data.result.shareRewardAmount}】`)
               message += `领奖成功，${data.data.result.shareRewardTip}【${data.data.result.shareRewardAmount}元】\n`;
-              // console.log(data.data.result.taskInfos)
+              console.log(data.data.result.taskInfos)
             } else {
               // console.log(`领奖失败，${data.data.bizMsg}`)
             }
