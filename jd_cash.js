@@ -77,11 +77,11 @@ let allMessage = '', NodeMessage = '';
     $.msg($.name, '', allMessage);
   }
   if (NodeMessage && nowTimes.getHours() >= 20) {
-    if ($.isNode()) await notify.sendNotify($.name, NodeMessage);
-    $.msg($.name, '', NodeMessage);
+    if ($.isNode()) await notify.sendNotify($.name, `${NodeMessage}\n入口：京东APP首页 - 领现金`);
+    $.msg($.name, '', `${NodeMessage}\n入口：京东APP首页 - 领现金`);
   }
   if (NodeMessage) {
-      $.msg($.name, '', NodeMessage);
+      $.msg($.name, '', `${NodeMessage}\n入口：京东APP首页 - 领现金`);
     }
 })()
     .catch((e) => {
