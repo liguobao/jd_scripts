@@ -20,7 +20,7 @@ cron "10 0-23/8 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/mast
 */
 
 const validator = require('./JDJRValidator_Pure.js');
-const Faker=require('./jd_sign_validate.js') 
+const Faker=require('./JDsign_validate.js') 
 
 const $ = new Env('京东签到图形验证');
 const notify = $.isNode() ? require('./sendNotify') : '';
