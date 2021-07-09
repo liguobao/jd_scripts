@@ -108,18 +108,9 @@ const UA = $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT :
     $.index = i + 1;
     if ($.inviteList_New && $.inviteList_New.length) console.log(`\n******开始内部京东账号【邀请好友助力】*********\n`);
     for (let j = 0; j < $.inviteList_New.length && $.canHelp; j++) {
-      $.oneInviteInfo = $.inviteList_New[j];
-      if ($.oneInviteInfo.ues === $.UserName || $.oneInviteInfo.max) {
-        continue;
-      }
-      if(aabbiill()){
-        //console.log($.oneInviteInfo);
-        $.inviteId = $.oneInviteInfo;
-        console.log(`${$.UserName}去助力${$.inviteId}`);
-        //await takePostRequest('helpHomeData');
-        await takePostRequest('help');
-        await $.wait(2000);
-      }
+      $.inviteId = $.inviteList_New[j];
+      console.log(`${$.UserName}去助力${$.inviteId}`);
+      await takePostRequest('help');
     }
   }
   
