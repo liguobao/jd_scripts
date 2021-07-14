@@ -100,7 +100,7 @@ if ($.isNode()) {
         // console.log($.HyperParam)
         console.log(`----------`);
         console.log(`🧾 获取所有价格保护列表，排除附件商品`);
-        for (let page = 1; $.hasNext; page++) {
+        for (let page = 1; $.hasNext; 50++) {
           await getApplyData(page);
         }
         console.log(`----------`);
