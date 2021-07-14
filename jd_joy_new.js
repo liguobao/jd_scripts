@@ -628,7 +628,7 @@ $.post = injectToRequest($.post.bind($))
 function getFollowChannels() {
   return new Promise(resolve => {
     $.get({
-      url: `https://jdjoy.jd.com/common/pet/getFollowChannels?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
+      url: `https://jdjoy.jd.com/common/pet/getFollowChannels?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F`,
       headers: {
         'Host': 'api.m.jd.com',
         'accept': '*/*',
@@ -647,8 +647,8 @@ function getFollowChannels() {
 function taskList() {
   return new Promise(resolve => {
     $.get({
-      // url: `https://jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
-      url: `https://jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
+      // url: `https://jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F`,
+      url: `https://jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F`,
       headers: {
         'Host': 'jdjoy.jd.com',
         'accept': '*/*',
@@ -677,7 +677,7 @@ function taskList() {
 function doTask(body, fnId = 'scan') {
   return new Promise(resolve => {
     $.post({
-      url: `https://jdjoy.jd.com/common/pet/${fnId}?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
+      url: `https://jdjoy.jd.com/common/pet/${fnId}?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F`,
       headers: {
         'Host': 'jdjoy.jd.com',
         'accept': '*/*',
@@ -710,7 +710,7 @@ function feed() {
   feedNum = process.env.feedNum ? process.env.feedNum : 80
   return new Promise(resolve => {
     $.post({
-      url: `https://jdjoy.jd.com/common/pet/enterRoom/h5?invitePin=&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
+      url: `https://jdjoy.jd.com/common/pet/enterRoom/h5?invitePin=&reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F`,
       headers: {
         'Host': 'jdjoy.jd.com',
         'accept': '*/*',
@@ -731,7 +731,7 @@ function feed() {
       } else {
         console.log('开始喂食......')
         $.get({
-          url: `https://jdjoy.jd.com/common/pet/feed?feedCount=${feedNum}&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
+          url: `https://jdjoy.jd.com/common/pet/feed?feedCount=${feedNum}&reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F`,
           headers: {
             'Host': 'jdjoy.jd.com',
             'accept': '*/*',
@@ -761,7 +761,7 @@ function feed() {
 function award(taskType) {
   return new Promise(resolve => {
     $.get({
-      url: `https://jdjoy.jd.com/common/pet/getFood?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&taskType=${taskType}`,
+      url: `https://jdjoy.jd.com/common/pet/getFood?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&taskType=${taskType}`,
       headers: {
         'Host': 'jdjoy.jd.com',
         'accept': '*/*',
@@ -791,7 +791,7 @@ function run(fn = 'match') {
   let level = process.env.JD_JOY_teamLevel ? process.env.JD_JOY_teamLevel : 2
   return new Promise(resolve => {
     $.get({
-      url: `https://jdjoy.jd.com/common/pet/combat/${fn}?teamLevel=${level}&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
+      url: `https://jdjoy.jd.com/common/pet/combat/${fn}?teamLevel=${level}&reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F`,
       headers: {
         'Host': 'jdjoy.jd.com',
         'sec-fetch-mode': 'cors',

@@ -2890,7 +2890,7 @@ function getDeskGoodDetails() {
         const host = `jdjoy.jd.com`;
         const reqSource = 'h5';
         let opt = {
-            url: `//jdjoy.jd.com/common/pet/getDeskGoodDetails?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//jdjoy.jd.com/common/pet/getDeskGoodDetails?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             // url: "//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5",
             method: "GET",
             data: {},
@@ -2927,7 +2927,7 @@ function followScan(sku) {
             sku
         }
         let opt = {
-            url: `//jdjoy.jd.com/common/pet/scan?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//jdjoy.jd.com/common/pet/scan?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             // url: "//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5",
             method: "POST",
             data: body,
@@ -2960,7 +2960,7 @@ function scanMarket(type, body, cType = 'application/json') {
         const reqSource = 'weapp';
         let opt = {
             // url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5",
-            url: `//draw.jdfcloud.com/common/pet/${type}?reqSource=weapp&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//draw.jdfcloud.com/common/pet/${type}?reqSource=weapp&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             method: "POST",
             data: body,
             credentials: "include",
@@ -2994,7 +2994,7 @@ function appScanMarket(type, body) {
         const host = `jdjoy.jd.com`;
         const reqSource = 'h5';
         let opt = {
-            url: `//jdjoy.jd.com/common/pet/${type}?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//jdjoy.jd.com/common/pet/${type}?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             // url: "//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5",
             method: "POST",
             data: body,
@@ -3028,7 +3028,7 @@ function getFood(type) {
         const reqSource = 'weapp';
         let opt = {
             // url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5",
-            url: `//draw.jdfcloud.com/common/pet/getFood?reqSource=weapp&taskType=${type}&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//draw.jdfcloud.com/common/pet/getFood?reqSource=weapp&taskType=${type}&reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             method: "GET",
             data: {},
             credentials: "include",
@@ -3061,7 +3061,7 @@ function followShop(shopId) {
         const host = 'draw.jdfcloud.com';
         let opt = {
             // url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5",
-            url: `//draw.jdfcloud.com/common/pet/followShop?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//draw.jdfcloud.com/common/pet/followShop?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             method: "POST",
             data: body,
             credentials: "include",
@@ -3093,7 +3093,7 @@ function enterRoom() {
         const reqSource = 'weapp';
         let opt = {
             // url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5",
-            url: `//draw.jdfcloud.com/common/pet/enterRoom/h5?reqSource=h5&invitePin=&openId=&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//draw.jdfcloud.com/common/pet/enterRoom/h5?reqSource=h5&invitePin=&openId=&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             method: "GET",
             data: {},
             credentials: "include",
@@ -3127,7 +3127,7 @@ function enterRoom() {
 function appGetPetTaskConfig() {
     $.appGetPetTaskConfigRes = $.getPetTaskConfigRes
     //   $.get({
-    //     'url': `https://jdjoy.jd.com/common/pet/getPetTaskConfig?validate=${$.validate}&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
+    //     'url': `https://jdjoy.jd.com/common/pet/getPetTaskConfig?validate=${$.validate}&reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F`,
     //     'headers': {
     //         'Referer': 'https://h5.m.jd.com/babelDiy/Zeus/2wuqXrZrhygTQzYA7VufBEpj4amH/index.html?babelChannel=ttt12&lng=117.613034&lat=23.940153&sid=158ac9cc27cc3f76d5a314093599a10w&un_area=16_1341_1347_44750',
     //         'User-Agent': 'jdapp;iPhone;10.0.2;13.7;7b01d4690ef13716984dcfcf96068f36b41f6c51;network/wifi;model/iPhone8,1;addressid/1518509182;appBuild/167694;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
@@ -3153,7 +3153,7 @@ function appGetPetTaskConfig() {
     //     const host = `jdjoy.jd.com`;
     //     const reqSource = 'h5';
     //     let opt = {
-    //         url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE",
+    //         url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F",
     //         // url: `//draw.jdfcloud.com/common/pet/feed?feedCount=${feedNum}&reqSource=h5`,
     //         method: "GET",
     //         data: {},
@@ -3194,7 +3194,7 @@ function feedPets(feedNum) {
         const reqSource = 'weapp';
         let opt = {
             // url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5",
-            url: `//draw.jdfcloud.com/common/pet/feed?feedCount=${feedNum}&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
+            url: `//draw.jdfcloud.com/common/pet/feed?feedCount=${feedNum}&reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F`,
             method: "GET",
             data: {},
             credentials: "include",
@@ -3256,7 +3256,7 @@ function getPetTaskConfig() {
         const host = `draw.jdfcloud.com`;
         const reqSource = 'weapp';
         $.get({
-            'url': `https://jdjoy.jd.com/common/pet/getPetTaskConfig?validate=${$.validate}&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE`,
+            'url': `https://jdjoy.jd.com/common/pet/getPetTaskConfig?validate=${$.validate}&reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F`,
             'headers': {
                 'Referer': 'https://h5.m.jd.com/babelDiy/Zeus/2wuqXrZrhygTQzYA7VufBEpj4amH/index.html?babelChannel=ttt12&lng=117.613034&lat=23.940153&sid=158ac9cc27cc3f76d5a314093599a10w&un_area=16_1341_1347_44750',
                 'User-Agent': 'jdapp;iPhone;10.0.2;13.7;7b01d4690ef13716984dcfcf96068f36b41f6c51;network/wifi;model/iPhone8,1;addressid/1518509182;appBuild/167694;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
@@ -3302,7 +3302,7 @@ function getPetRace() {
         const host = `jdjoy.jd.com`;
         const reqSource = 'h5';
         let opt = {
-            url: `//jdjoy.jd.com/common/pet/combat/detail/v2?help=false&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//jdjoy.jd.com/common/pet/combat/detail/v2?help=false&reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             // url: "//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5",
             method: "GET",
             data: {},
@@ -3335,7 +3335,7 @@ function getRankList() {
         // const url = `${JD_API_HOST}/combat/getRankList`;
         $.raceUsers = [];
         let opt = {
-            url: `//jdjoy.jd.com/common/pet/combat/getRankList?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//jdjoy.jd.com/common/pet/combat/getRankList?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             // url: "//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5",
             method: "GET",
             data: {},
@@ -3374,7 +3374,7 @@ function runMatch(teamLevel, timeout = 5000) {
         const host = `jdjoy.jd.com`;
         const reqSource = 'h5';
         let opt = {
-            url: `//jdjoy.jd.com/common/pet/combat/match?teamLevel=${teamLevel}&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//jdjoy.jd.com/common/pet/combat/match?teamLevel=${teamLevel}&reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             // url: `//draw.jdfcloud.com/common/pet/combat/match?teamLevel=${teamLevel}&reqSource=h5`,
             method: "GET",
             data: {},
@@ -3408,7 +3408,7 @@ function getBackupInfo() {
         const host = `jdjoy.jd.com`;
         const reqSource = 'h5';
         let opt = {
-            url: `//jdjoy.jd.com/common/pet/combat/getBackupInfo?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//jdjoy.jd.com/common/pet/combat/getBackupInfo?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             // url: "//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5",
             method: "GET",
             data: {},
@@ -3441,7 +3441,7 @@ function getWinCoin() {
         // const url = `${weAppUrl}/combat/detail/v2?help=false&reqSource=weapp`;
         let opt = {
             // url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5",
-            url: `//draw.jdfcloud.com/common/pet/combat/detail/v2?help=false&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//draw.jdfcloud.com/common/pet/combat/detail/v2?help=false&reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             method: "GET",
             data: {},
             credentials: "include",
@@ -3476,7 +3476,7 @@ function receiveJoyRunAward() {
         const host = `jdjoy.jd.com`;
         const reqSource = 'h5';
         let opt = {
-            url: `//jdjoy.jd.com/common/pet/combat/receive?reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//jdjoy.jd.com/common/pet/combat/receive?reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             // url: "//draw.jdfcloud.com/common/pet/getPetTaskConfig?reqSource=h5",
             method: "GET",
             data: {},
@@ -3538,7 +3538,7 @@ function getSupplyInfo(showOrder) {
         // const url = `${weAppUrl}/combat/getSupplyInfo?showOrder=${showOrder}`;
         let opt = {
             // url: "//jdjoy.jd.com/common/pet/getPetTaskConfig?reqSource=h5",
-            url: `//draw.jdfcloud.com/common/pet/combat/getSupplyInfo?showOrder=${showOrder}&reqSource=h5&invokeKey=NRp8OPxZMFXmGkaE&validate=${$.validate}`,
+            url: `//draw.jdfcloud.com/common/pet/combat/getSupplyInfo?showOrder=${showOrder}&reqSource=h5&invokeKey=qRKHmL4sna8ZOP9F&validate=${$.validate}`,
             method: "GET",
             data: {},
             credentials: "include",
