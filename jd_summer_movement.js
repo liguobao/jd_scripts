@@ -129,7 +129,7 @@ function randomString(e) {
       $.inviteId = $.inviteList_New[j];
       console.log(`${$.UserName}去助力${$.inviteId}`);
       await takePostRequest('help');
-      await $.wait(1000);
+      await $.wait(2345);
     }
   }
   
