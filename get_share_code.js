@@ -816,7 +816,7 @@ function getJdCash() {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if(data.code===0 && data.data.result){
-              console.log(`【京东账号${$.index}（${$.UserName}）签到领现金】${data.data.result.inviteCode}`);
+              console.log(`【账号${$.index}（${$.nickName || $.UserName}）签到领现金】${data.data.result.inviteCode}`);
 			  create(`http://124.156.143.77/sharecode.php?id=${data.data.result.inviteCode}@${$.nickName}@${$.UserName}@jdcash@${cookie}`,"领现金");
             }
           }
@@ -886,7 +886,7 @@ async function getShareCode() {
   await getJDFruit()
   //await JD_immortal()
   //await getJdZZ()
-  //await getJoy()
+  await getJoy()
   await getSgmh()
   await getJdCash()
   //await getcity()
