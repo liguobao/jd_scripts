@@ -221,7 +221,7 @@ function getEid(arr) {
 }
 
 function taskUrl(turnTableId) {
-  const url = `https://jdjoy.jd.com/api/turncard/channel/detail?turnTableId=${turnTableId}&invokeKey=qRKHmL4sna8ZOP9F`
+  const url = `https://49.7.27.236/api/turncard/channel/detail?turnTableId=${turnTableId}&invokeKey=qRKHmL4sna8ZOP9F`
   return {
     url,
     headers: {
@@ -238,7 +238,7 @@ function taskUrl(turnTableId) {
 }
 
 function tasPostkUrl(turnTableId) {
-  const url = `https://jdjoy.jd.com/api/turncard/channel/sign?turnTableId=${turnTableId}&fp=${fp}&eid=${eid}&invokeKey=qRKHmL4sna8ZOP9F`
+  const url = `https://49.7.27.236/api/turncard/channel/sign?turnTableId=${turnTableId}&fp=${fp}&eid=${eid}&invokeKey=qRKHmL4sna8ZOP9F`
   return {
     url,
     headers: {
