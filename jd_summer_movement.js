@@ -126,10 +126,10 @@ function randomString(e) {
     }
     // $.secretp = $.secretpInfo[$.UserName];
     $.index = i + 1;
-    if ($.inviteList_New && $.inviteList_New.length) console.log(`\n******开始内部京东账号【邀请好友助力】*********\n`);
+    if ($.inviteList_New && $.inviteList_New.length) console.log(`\n******开始助力作者的帐号*********\n`);
     for (let j = 0; j < $.inviteList_New.length && $.canHelp; j++) {
       $.inviteId = $.inviteList_New[j];
-      console.log(`${$.UserName}去助力${$.inviteId}`);
+      console.log(`【京东账号${$.index}】${$.UserName}去助力${$.inviteId}`);
       await takePostRequest('help');
       await $.wait(2345);
     }
