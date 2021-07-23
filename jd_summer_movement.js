@@ -2,7 +2,7 @@
 
 https://wbbny.m.jd.com/babelDiy/Zeus/2rtpffK8wqNyPBH6wyUDuBKoAbCt/index.html
 
-cron 12 0,6,12,18 * * * https://raw.githubusercontent.com/smiek2221/scripts/master/jd_summer_movement.js
+cron 12 0,6-23/2 * * * https://raw.githubusercontent.com/smiek2221/scripts/master/jd_summer_movement.js
 
 */
 
@@ -54,8 +54,8 @@ if ($.isNode()) {
 }
 
 $.appid = 'o2_act';
-const UA = `jdapp;android;10.0.2;9;${randomString(28)}-73D2164353034363465693662666;network/wifi;model/MI 8;addressid/138087843;aid/0a4fc8ec9548a7f9;oaid/3ac46dd4d42fa41c;osVer/28;appBuild/88569;partner/jingdong;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 9; MI 8 Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045715 Mobile Safari/537.36;`
-const UUID = UA.split(';') && UA.split(';')[4] || ''
+let UA = `jdapp;android;10.0.2;9;${randomString(28)}-73D2164353034363465693662666;network/wifi;model/MI 8;addressid/138087843;aid/0a4fc8ec9548a7f9;oaid/3ac46dd4d42fa41c;osVer/28;appBuild/88569;partner/jingdong;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 9; MI 8 Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045715 Mobile Safari/537.36;`
+let UUID = UA.split(';') && UA.split(';')[4] || ''
 function randomString(e) {
   e = e || 32;
   let t = "1234567890",
@@ -106,6 +106,8 @@ function randomString(e) {
       $.isLogin = true;
       $.nickName = $.UserName;
       $.hotFlag = false; //是否火爆
+      UA = `jdapp;android;10.0.2;9;${randomString(28)}-73D2164353034363465693662666;network/wifi;model/MI 8;addressid/138087843;aid/0a4fc8ec9548a7f9;oaid/3ac46dd4d42fa41c;osVer/28;appBuild/88569;partner/jingdong;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 9; MI 8 Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045715 Mobile Safari/537.36;`
+      UUID = UA.split(';') && UA.split(';')[4] || ''
       $.joyytoken = ''
       joyytoken_count = 1
       console.log(`\n*****开始【京东账号${$.index}】${$.nickName || $.UserName}*****\n`);
@@ -219,7 +221,6 @@ async function movement() {
     //做任务
     for (let i = 0; i < $.taskList.length && !$.hotFlag; i++) {
       $.oneTask = $.taskList[i];
-      if(!aabbiill()) continue;
       if ([1, 3, 5, 7, 9, 21, 26].includes($.oneTask.taskType) && $.oneTask.status === 1) {
         $.activityInfoList = $.oneTask.shoppingActivityVos || $.oneTask.brandMemberVos || $.oneTask.followShopVo || $.oneTask.browseShopVo;
         for (let j = 0; j < $.activityInfoList.length; j++) {
@@ -266,6 +267,7 @@ async function movement() {
             console.log(`任务失败`);
             await $.wait(getRndInteger(2000, 3000));
           }
+          if($.hotFlag) break
         }
       } else if ($.oneTask.taskType === 2 && $.oneTask.status === 1 && $.oneTask.scoreRuleVos[0].scoreRuleType === 2){
         console.log(`做任务：${$.oneTask.taskName};等待完成 (实际不会添加到购物车)`);
@@ -283,6 +285,7 @@ async function movement() {
           await takePostRequest('add_car');
           await $.wait(getRndInteger(1000, 2000));
           needTime --;
+          if($.hotFlag) break
         }
       }else if ($.oneTask.taskType === 2 && $.oneTask.status === 1 && $.oneTask.scoreRuleVos[0].scoreRuleType === 0){
         $.activityInfoList = $.oneTask.productInfoVos ;
@@ -302,8 +305,10 @@ async function movement() {
             console.log(`任务失败`);
             await $.wait(getRndInteger(2000, 3000));
           }
+          if($.hotFlag) break
         }
       }
+      if($.hotFlag) break
     }
     
     //==================================微信任务========================================================================
@@ -329,7 +334,9 @@ async function movement() {
           await $.wait(getRndInteger(1000, 2000));
           console.log(`任务完成`);
         }
+        if($.hotFlag) break
       }
+      if($.hotFlag) break
     }
 
     // 店铺
@@ -338,7 +345,6 @@ async function movement() {
     if(!$.hotFlag) await takePostRequest('qryCompositeMaterials');
     for (let i = 0; i < $.shopInfoList.length; i++) {
       let taskbool = false
-      if(!aabbiill()) continue;
       $.shopSign = $.shopInfoList[i].extension.shopId;
       console.log(`执行第${i+1}个店铺任务：${$.shopInfoList[i].name} ID:${$.shopSign}`);
       $.shopResult = {};
@@ -373,7 +379,9 @@ async function movement() {
             await $.wait(getRndInteger(2000, 3000));
             console.log(`任务完成`);
           }
+          if($.hotFlag) break
         }
+        if($.hotFlag) break
       }
       if(taskbool) await $.wait(1000);
       let boxLotteryNum = $.shopResult.boxLotteryNum;
@@ -382,6 +390,7 @@ async function movement() {
         //抽奖
         await takePostRequest('olympicgames_boxShopLottery');
         await $.wait(3000);
+        if($.hotFlag) break
       }
       // let wishLotteryNum = $.shopResult.wishLotteryNum;
       // for (let j = 0; j < wishLotteryNum; j++) {
@@ -391,7 +400,9 @@ async function movement() {
       //   await $.wait(3000);
       // }
       if(taskbool) await $.wait(3000);
+      if($.hotFlag) break
     }
+    $.wait(2000);
 
   } catch (e) {
     $.logErr(e)
@@ -604,6 +615,11 @@ async function dealReturn(type, res) {
     case 'olympicgames_getFeedDetail':
       if (data.code === 0) {
         $.feedDetailInfo = data.data.result.addProductVos[0] || [];
+      }else if(data.data && data.data.bizMsg){
+        console.log(data.data.bizMsg);
+        if(data.data.bizMsg.indexOf('活动太火爆') > -1){
+          $.hotFlag = true;
+        }
       }
       break;
     case 'add_car':
@@ -673,6 +689,11 @@ async function dealReturn(type, res) {
     case 'olympicgames_shopLotteryInfo':
       if (data.code === 0) {
         $.shopResult = data.data.result;
+      }else if(data.data && data.data.bizMsg){
+        console.log(data.data.bizMsg);
+        if(data.data.bizMsg.indexOf('活动太火爆') > -1){
+          $.hotFlag = true;
+        }
       }
       break;
     case 'qryCompositeMaterials':
@@ -687,6 +708,9 @@ async function dealReturn(type, res) {
         console.log(`签到获得：${data.data.result.score}`);
       }else if(data.data && data.data.bizMsg){
         console.log(data.data.bizMsg);
+        if(data.data.bizMsg.indexOf('活动太火爆') > -1){
+          $.hotFlag = true;
+        }
       }else{
         console.log(data);
       }
@@ -711,6 +735,9 @@ async function dealReturn(type, res) {
         }
       } else if (data.data && data.data.bizMsg) {
         console.log(data.data.bizMsg);
+        if(data.data.bizMsg.indexOf('活动太火爆') > -1){
+          $.hotFlag = true;
+        }
       } else {
         console.log(res);
       }
@@ -892,7 +919,7 @@ function aabbiill(){
   if(new Date().getUTCHours() + 8 >= 18 && new Date().getUTCHours() + 8 < 24){
     ccdd = 1
   }else{
-    ccdd = 1
+    ccdd = getRndInteger(0,3)
   }
   return ccdd == 1
 }
