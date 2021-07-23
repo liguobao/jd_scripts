@@ -22,6 +22,7 @@ cron "13 1,6,22 * * *" script-path=jd_health.js, tag=东东健康社区
  */
 const $ = new Env("东东健康社区");
 const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
+const notify = $.isNode() ? require('./sendNotify') : ''; 
 let reward = '5';
 let cookiesArr = [],
   cookie = "",
