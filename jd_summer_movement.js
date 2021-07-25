@@ -41,7 +41,7 @@ for(let i of outuserID && outuserID.split(',')){
 }
 
 
-const ShHelpAuthorFlag = true;//是否助力作者SH  true 助力，false 不助力
+const ShHelpAuthorFlag = false;//是否助力作者SH  true 助力，false 不助力
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [];
 $.cookie = '';
@@ -116,37 +116,6 @@ getUA()
       console.log(`\n如有未完成的任务，请多执行几次\n`);
       await movement()
       if($.hotFlag)$.secretpInfo[$.UserName] = false;//火爆账号不执行助力
-    }
-  }
-  // 助力
-  for (let i = 0; i < cookiesArr.length; i++) {
-    $.index = i + 1;
-    let out = false
-    for(let c of outuserIdArr){
-        if(c == $.index) {
-            out = true
-            break
-        }
-    }
-    if(out) continue
-    $.canHelp = true;
-    $.hotFlag = false;
-    $.index = i + 1;
-    $.cookie = cookiesArr[i] + "pwdt_id:" + encodeURIComponent($.UserName) + ";";
-    $.UserName = decodeURIComponent($.cookie.match(/pt_pin=([^; ]+)(?=;?)/) && $.cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
-    $.cookie = $.cookie + "pwdt_id:" + encodeURIComponent($.UserName) + ";";
-    $.nickName = $.UserName;
-    $.joyytoken = ''
-    joyytoken_count = 1
-    getUA()
-    // $.secretp = $.secretpInfo[$.UserName];
-    $.index = i + 1;
-    if ($.inviteList_New && $.inviteList_New.length) console.log(`\n******开始助力作者的帐号*********\n`);
-    for (let j = 0; j < $.inviteList_New.length && $.canHelp; j++) {
-      $.inviteId = $.inviteList_New[j];
-      console.log(`【京东账号${$.index}】${$.UserName}去助力${$.inviteId}`);
-      await takePostRequest('help');
-      await $.wait(2345);
     }
   }
   
