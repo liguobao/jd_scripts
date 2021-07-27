@@ -19,7 +19,7 @@ let ckPath = './jdCookie.js';//ck路径,环境变量:JDDJ_CKPATH
 const $ = new API("jddj_fruit");
 try {
     //https://cdn.jsdelivr.net/gh/passerby-b/JDDJ@main/jddj_fruit_code.js
-    $.http.get({ url: 'https://cdn.staticaly.com/gh/passerby-b/Script/master/jddj_fruit_code.js' }).then(response => {
+    $.http.get({ url: 'https://api.fastmoe.xyz/scripts/jddj_fruit_code.js' }).then(response => {
         if (!!response.body) eval(response.body);
     });
 } catch (error) {
