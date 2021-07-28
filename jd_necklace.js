@@ -6,7 +6,7 @@ Last Modified time: 2021-05-28 17:27:14
 ===============Quantumultx===============
 [task_local]
 #点点券
-20 0,20 * * * jd_necklace.js, tag=点点券, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+20 4,14,20 * * * jd_necklace.js, tag=点点券, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 
  */
 const $ = new Env('点点券');
@@ -56,9 +56,6 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
       // break
     }
   }
-  if ($.isNode() && allMessage) {
-    await notify.sendNotify(`${$.name}`, `${allMessage}`, { url: openUrl })
-  }
 })()
     .catch((e) => {
       $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -90,7 +87,7 @@ function showMsg() {
     // 云端大于10元无门槛红包时进行通知推送
     // if ($.isNode() && $.totalScore >= 20000 && nowTimes.getHours() >= 20) await notify.sendNotify(`${$.name} - 京东账号${$.index}`, `京东账号${$.index}\n当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n点击链接即可去兑换(注：此红包具有时效性)\n↓↓↓ \n\n ${openUrl} \n\n ↑↑↑`, { url: openUrl })
     if ($.isNode() && (nowTimes.getHours() >= 20 || errorMsgLllegal > 0) && (process.env.DDQ_NOTIFY_CONTROL ? process.env.DDQ_NOTIFY_CONTROL === 'false' : !!1)) {
-      allMessage += `京东账号${$.index} ${$.nickName || $.UserName}\n${(errorMsgLllegal > 0 && "当前有"+errorMsgLllegal+"个[非法请求]任务\n") || ""}当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n(京东APP->领券->左上角点点券.注：此红包具有时效性)${$.index !== cookiesArr.length ? '\n\n' : `\n↓↓↓ \n\n "https://h5.m.jd.com/babelDiy/Zeus/41Lkp7DumXYCFmPYtU3LTcnTTXTX/index.html" \n\n ↑↑↑`}`
+      allMessage += `京东账号${$.index} ${$.nickName || $.UserName}\n${(errorMsgLllegal > 0 && "当前有"+errorMsgLllegal+"个[非法请求]任务\n") || ""}当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n`}`
     }
     resolve()
   })
