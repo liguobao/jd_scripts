@@ -29,6 +29,8 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
+let allMessage = '';
+let nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000);
 
 let cookiesArr = [], cookie = '', message;
 if ($.isNode()) {
@@ -71,6 +73,9 @@ const JD_API_HOST = 'https://api.m.jd.com/', actCode = 'visa-card-001';
       await $.wait(2*1000)
     }
   }
+  if ($.isNode() && (nowTimes.getHours() >= 20)) {
+       await notify.sendNotify(`京东极速版`, `${allMessage}兑换入口：京东极速版->我的->金币`);
+    }
 })()
   .catch((e) => {
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -107,6 +112,7 @@ async function jdGlobal() {
 function showMsg() {
   return new Promise(resolve => {
     message += `本次运行获得${$.score}金币，共计${$.total}金币\n可兑换 ${($.total/10000).toFixed(2)} 元京东红包\n兑换入口：京东极速版->我的->金币`
+	allMessage += `京东账号${$.index}${$.nickName}\n当前有${$.total}金币\n可兑换 ${($.total/10000).toFixed(2)} 元京东红包\n\n`
     $.msg($.name, '', `京东账号${$.index}${$.nickName}\n${message}`);
     resolve()
   })
