@@ -13,17 +13,17 @@
 
 [task_local]
 #京喜工厂开团
-34 2,5,10,16 * * * https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_dreamFactory_tuan, tag=京喜工厂开团, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxcfd.png, enabled=true
+34 2,5,10,16 * * * https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_dreamFactory_tuan.js, tag=京喜工厂开团, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxcfd.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "34 2,5,10,16 * * *" script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_dreamFactory_tuan,tag=京喜工厂开团
+cron "34 2,5,10,16 * * *" script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_dreamFactory_tuan.js,tag=京喜工厂开团
 
 ===============Surge=================
-京喜工厂开团 = type=cron,cronexp="34 2,5,10,16 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_dreamFactory_tuan
+京喜工厂开团 = type=cron,cronexp="34 2,5,10,16 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_dreamFactory_tuan.js
 
 ============小火箭=========
-京喜工厂开团 = type=cron,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_dreamFactory_tuan, cronexpr="34 2,5,10,16 * * *", timeout=3600, enable=true
+京喜工厂开团 = type=cron,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_dreamFactory_tuan.js, cronexpr="34 2,5,10,16 * * *", timeout=3600, enable=true
 
 
 * */
