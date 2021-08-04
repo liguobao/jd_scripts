@@ -40,7 +40,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
   }
-  // console.log(`\n通知：京东已在领取任务、签到、领取点点券三个添加了log做了校验，暂时无可解决\n`);
+  console.log(`\n通知：[非法请求] 可以等5分钟左右再次执行脚本\n`);
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -89,8 +89,8 @@ function showMsg() {
     $.msg($.name, '', `京东账号${$.index} ${$.nickName || $.UserName}\n${(errorMsgLllegal > 0 && "当前有"+errorMsgLllegal+"个[非法请求]任务\n") || ""}当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n点击弹窗即可去兑换(注：此红包具有时效性)`, { 'open-url': openUrl});
     // 云端大于10元无门槛红包时进行通知推送
     // if ($.isNode() && $.totalScore >= 20000 && nowTimes.getHours() >= 20) await notify.sendNotify(`${$.name} - 京东账号${$.index}`, `京东账号${$.index}\n当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n点击链接即可去兑换(注：此红包具有时效性)\n↓↓↓ \n\n ${openUrl} \n\n ↑↑↑`, { url: openUrl })
-    if ($.isNode() && (nowTimes.getHours() >= 20 || errorMsgLllegal > 0) && (process.env.DDQ_NOTIFY_CONTROL ? process.env.DDQ_NOTIFY_CONTROL === 'false' : !!1)) {
-      allMessage += `京东账号${$.index} ${$.nickName || $.UserName}\n${(errorMsgLllegal > 0 && "当前有"+errorMsgLllegal+"个[非法请求]任务\n") || ""}当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n(京东APP->领券->左上角点点券.注：此红包具有时效性)${$.index !== cookiesArr.length ? '\n\n' : `\n↓↓↓ \n\n "https://h5.m.jd.com/babelDiy/Zeus/41Lkp7DumXYCFmPYtU3LTcnTTXTX/index.html" \n\n ↑↑↑`}`
+    if ($.isNode() && (nowTimes.getHours() >= 20) && (process.env.DDQ_NOTIFY_CONTROL ? process.env.DDQ_NOTIFY_CONTROL === 'false' : !!1)) {
+      allMessage += `京东账号${$.index} ${$.nickName || $.UserName}\n${(errorMsgLllegal > 0 && "当前有"+errorMsgLllegal+"个[非法请求]任务\n") || ""}当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n\n`
     }
     resolve()
   })
@@ -125,10 +125,10 @@ async function receiveBubbles() {
   }
 }
 async function sign() {
-  if ($.signInfo.todayCurrentSceneSignStatus === 1) {
+  if ($.signInfo && $.signInfo.todayCurrentSceneSignStatus === 1) {
     console.log(`\n开始每日签到`)
     await necklace_sign();
-  } else {
+  } else if($.signInfo) {
     console.log(`当前${new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000).toLocaleString()}已签到`)
   }
 }
@@ -479,6 +479,7 @@ function taskPostUrl(function_id, body = {}) {
     }
   }
 }
+
 function safeGet(data) {
   try {
     if (typeof JSON.parse(data) == "object") {
@@ -503,7 +504,7 @@ function jsonParse(str) {
 }
 
 function getUA(){
-  $.UA = `jdapp;iPhone;10.0.8;14.3;${randomString(40)};network/wifi;model/iPhone12,1;addressid/4199175193;appBuild/167741;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1`
+  $.UA = `jdapp;iPhone;10.0.10;14.3;${randomString(40)};network/wifi;model/iPhone12,1;addressid/4199175193;appBuild/167741;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1`
   $.UUID = $.UA.split(';') && $.UA.split(';')[4] || ''
   $.joyytoken = ''
 }
