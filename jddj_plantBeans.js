@@ -1,17 +1,15 @@
 /*
 京东到家鲜豆庄园脚本,支持qx,loon,shadowrocket,surge,nodejs
-用抓包抓 https://daojia.jd.com/html/index.html 页面cookie填写到下面,暂时不知cookie有效期
-抓多账号直接清除浏览器缓存再登录新账号,千万别点退出登录,否则cookie失效
-cookie只要里面的deviceid_pdj_jd=xxx-xxx-xxx;o2o_m_h5_sid=xxx-xxx-xxx关键信息
-一天运行一次
+兼容京东jdCookie.js
+手机设备在boxjs里填写cookie
 boxjs订阅地址:https://gitee.com/passerby-b/javascript/raw/master/JD/passerby-b.boxjs.json
 TG群:https://t.me/passerbyb2021
 
 [task_local]
-10 3,5,8 * * * https://raw.githubusercontent.com/passerby-b/JDDJ/main/jddj_plantBeans.js
-new Env("京东到家鲜豆庄园");
+10 0 * * * https://raw.githubusercontent.com/passerby-b/JDDJ/main/jddj_plantBeans.js
+
 [Script]
-cron "10 3,5,8 * * *" script-path=https://raw.githubusercontent.com/passerby-b/JDDJ/main/jddj_plantBeans.js,tag=京东到家鲜豆庄园
+cron "10 0 * * *" script-path=https://raw.githubusercontent.com/passerby-b/JDDJ/main/jddj_plantBeans.js,tag=京东到家鲜豆庄园
 
 */
 

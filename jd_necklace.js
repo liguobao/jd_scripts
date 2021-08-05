@@ -89,7 +89,7 @@ function showMsg() {
     $.msg($.name, '', `京东账号${$.index} ${$.nickName || $.UserName}\n${(errorMsgLllegal > 0 && "当前有"+errorMsgLllegal+"个[非法请求]任务\n") || ""}当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n点击弹窗即可去兑换(注：此红包具有时效性)`, { 'open-url': openUrl});
     // 云端大于10元无门槛红包时进行通知推送
     // if ($.isNode() && $.totalScore >= 20000 && nowTimes.getHours() >= 20) await notify.sendNotify(`${$.name} - 京东账号${$.index}`, `京东账号${$.index}\n当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n点击链接即可去兑换(注：此红包具有时效性)\n↓↓↓ \n\n ${openUrl} \n\n ↑↑↑`, { url: openUrl })
-    if ($.isNode() && (nowTimes.getHours() >= 20 && $.totalScore >= 50000) && (process.env.DDQ_NOTIFY_CONTROL ? process.env.DDQ_NOTIFY_CONTROL === 'false' : !!1)) {
+    if ($.isNode() && (nowTimes.getHours() >= 20 && $.totalScore >= 50000 || errorMsgLllegal > 5) && (process.env.DDQ_NOTIFY_CONTROL ? process.env.DDQ_NOTIFY_CONTROL === 'false' : !!1)) {
       allMessage += `京东账号${$.index} ${$.nickName || $.UserName}\n${(errorMsgLllegal > 0 && "当前有"+errorMsgLllegal+"个[非法请求]任务\n") || ""}当前${$.name}：${$.totalScore}个\n可兑换无门槛红包：${$.totalScore / 1000}元\n\n`
     }
     resolve()
