@@ -25,7 +25,7 @@ const notify = $.isNode() ? require('./sendNotify') : "";
 let cookiesArr = [], cookie = "", allMessage = "", message;
 const inviteCodes = ['T019v_R7SRsR8UnQKRv0kPACjVfnoaW5kRrbA','T0225KkcRRtI9VaFJhr0l_QMIgCjVfnoaW5kRrbA']
 const randomCount = 20;
-let reward = '5';
+let reward = '20';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item]);
@@ -189,6 +189,8 @@ async function getCommodities() {
       try {
         if (safeGet(data)) {
           data = $.toObj(data)
+		  console.log(data)
+		  console.log(data.data.result.jBeans)
           let beans = data.data.result.jBeans.filter(x => x.status !== 0 && x.status !== 1)
           if (beans.length !== 0) {
             for (let key of Object.keys(beans)) {

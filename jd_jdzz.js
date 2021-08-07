@@ -122,8 +122,6 @@ function showMsg() {
     } else {
       $.log(message)
     }
-    // 云端大于10元无门槛红包时进行通知推送
-    if ($.isNode() && $.totalNum >= 300000) await notify.sendNotify(`${$.name} - 京东账号${$.index} - ${$.nickName}`, `京东账号${$.index} ${$.nickName}\n当前金币：${$.totalNum}个\n可兑换无门槛红包：${parseInt($.totalNum) / 10000}元\n`,)
     allMessage += `京东账号${$.index} ${$.nickName}\n当前金币：${$.totalNum}个\n可兑换无门槛红包：${parseInt($.totalNum) / 10000}元\n兑换入口:京东赚赚微信小程序->赚好礼->金币提现${$.index !== cookiesArr.length ? '\n\n' : ''}`;
     resolve();
   })
