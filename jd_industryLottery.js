@@ -1,6 +1,20 @@
 /*
 京东工业品抽奖
 10 7 17,18 8 * https://raw.githubusercontent.com/star261/jd/main/scripts/jd_industryLottery.js
+
+[task_local]
+#京东工业品抽奖
+10 7 17,18 8 * jd_industryLottery.js, tag=京东工业品抽奖, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+================Loon===============
+[Script]
+cron "10 7 17,18 8 *" script-path=jd_industryLottery.js, tag=京东工业品抽奖
+=============Surge===========
+[Script]
+京东工业品抽奖 = type=cron,cronexp="10 7 17,18 8 *",wake-system=1,timeout=3600,script-path=jd_industryLottery.js
+
+============小火箭=========
+京东工业品抽奖 = type=cron,script-path=jd_industryLottery.js, cronexpr="10 7 17,18 8 *", timeout=3600, enable=true
+
  */
 const $ = new Env('京东工业品抽奖');
 const notify = $.isNode() ? require('./sendNotify') : '';
