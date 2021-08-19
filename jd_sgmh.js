@@ -28,10 +28,7 @@ const $ = new Env('闪购盲盒');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let appId = '1EFRXxg' , homeDataFunPrefix = 'interact_template', collectScoreFunPrefix = 'harmony', message = ''
 let lotteryResultFunPrefix = homeDataFunPrefix, browseTime = 6
-const inviteCodes = [
-  'T019-aknAFRllhyoQlyI46gCjVQmoaT5kRrbA@T010_aU6SR8Q_QCjVQmoaT5kRrbA@T0225KkcRhcbp1CBJhv0wfZedQCjVQmoaT5kRrbA@T027Zm_olqSxIOtH97BATGmKoWraLawCjVQmoaT5kRrbA',
-  'T019-aknAFRllhyoQlyI46gCjVQmoaT5kRrbA@T010_aU6SR8Q_QCjVQmoaT5kRrbA@T027Zm_olqSxIOtH97BATGmKoWraLawCjVQmoaT5kRrbA@T0225KkcRk1N_FeCJhv3xvdfcQCjVQmoaT5kRrbA'
-];
+const inviteCodes = ['T019v_R7SRsR8UnQKRv0kPACjVQmoaT5kRrbA','T0225KkcRRtI9VaFJhr0l_QMIgCjVQmoaT5kRrbA'];
 const randomCount = $.isNode() ? 20 : 5;
 const notify = $.isNode() ? require('./sendNotify') : '';
 let merge = {}
@@ -312,7 +309,7 @@ function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
     $.get({
-      url: `http://share.turinglabs.net/api/v3/sgmh/query/${randomCount}/`,
+      url: `http://share.jdym.cc/api/v3/sgmh/query/${randomCount}/`,
       'timeout': 10000
     }, (err, resp, data) => {
       try {
