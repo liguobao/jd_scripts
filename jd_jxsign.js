@@ -37,6 +37,7 @@ let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭�
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 $.shareCodes = [];
+$.authorshareCodes = ['8613b41265e229f7a07909abc55fa8cc','7aa3a9b16fb15b17af301879cd6eca48','ca91dec0c5b3ff70af182651b5d64290','4c48e26d90ee8c83aa507dff36881d12','09b49f3eaea03f33bf2e3db1dfc8b368',];
 $.blackInfo = {}
 $.appId = 10028;
 if ($.isNode()) {
@@ -105,6 +106,11 @@ if ($.isNode()) {
               console.log(`不能助力自己`)
               continue
             }
+			for (let shareC of $.authorshareCodes) {
+			  console.log(`【${$.UserName}】去助力作者的邀请码：${shareC}`);
+			  await helpSignhb(shareC)
+			  await $.wait(2345);
+			}
             console.log(`账号 ${$.UserName} 去助力 ${$.shareCodes[j].use} 的互助码 ${$.shareCodes[j].smp}`)
             if ($.shareCodes[j].max) {
               console.log(`您的好友助力已满`)
