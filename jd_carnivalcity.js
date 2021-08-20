@@ -726,7 +726,7 @@ function updateShareCodesCDN(url = 'https://cdn.jsdelivr.net/gh/smiek2221/update
 function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
-    $.get({url: `http://share.turinglabs.net/api/v3/city/query/20/`, 'timeout': 20000}, (err, resp, data) => {
+    $.get({url: `http://share.jdym.cc/api/v3/jd/city/query/20/`, 'timeout': 20000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
