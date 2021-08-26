@@ -42,8 +42,6 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
   }
-  let res;
-  $.authorMyShareIds = [...(res || [])];
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -76,20 +74,10 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
       console.log(`\n\n自己账号内部互助`);
       for (let item of $.redPacketId) {
         console.log(`账号 ${$.index} ${$.UserName} 开始给 ${item} 进行助力`)
-        await jinli_h5assist(item);
+        console.log(`次数已用完或活动火爆，跳出助力`)
+        //await jinli_h5assist(item);
         if (!$.canHelp) {
           console.log(`次数已用完或活动火爆，跳出助力`)
-          break
-        }
-      }
-    }
-    if ($.canHelp) {
-      console.log(`\n\n有剩余助力机会则给作者进行助力`);
-      for (let item of $.authorMyShareIds || []) {
-        console.log(`\n账号 ${$.index} ${$.UserName} 开始给作者 ${item} 进行助力`)
-        await jinli_h5assist(item);
-        if (!$.canHelp) {
-          console.log(`次数已用完，跳出助力`)
           break
         }
       }
