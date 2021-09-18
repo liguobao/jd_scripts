@@ -126,22 +126,31 @@ if ($.isNode()) {
 async function jdDreamFactory() {
   try {
     await userInfo();
+	await $.wait(2000);
     await QueryFriendList();//查询今日招工情况以及剩余助力次数
+	await $.wait(2000);
     // await joinLeaderTuan();//参团
     await helpFriends();
+	await $.wait(2000);
     if (!$.unActive) return
     // await collectElectricity()
     await getUserElectricity();
+	await $.wait(2000);
     await taskList();
+	await $.wait(2000);
     await investElectric();
+	await $.wait(2000);
     await QueryHireReward();//收取招工电力
+	await $.wait(2000);
     await PickUp();//收取自家的地下零件
+	await $.wait(2000);
     await stealFriend();
     if (tuanActiveId) {
       await tuanActivity();
       await QueryAllTuan();
     }
     await exchangeProNotify();
+	await $.wait(2000);
     await showMsg();
   } catch (e) {
     $.logErr(e)
@@ -444,6 +453,7 @@ async function helpFriends() {
     await shareCodesFormat();
     for (let code of $.newShareCodes) {
       if (code) {
+		  await $.wait(2000);
         if ($.encryptPin === code) {
           console.log(`不能为自己助力,跳过`);
           continue;
