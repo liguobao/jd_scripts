@@ -1478,9 +1478,9 @@ function create(path, name) {
       try {
         const needAgain = await checkWhetherNeedAgain(resp, create, url1, name);
         if (needAgain) return;
-        message = JSON.parse(data);
+        mmessage = JSON.parse(data);
         //$.log(`\n${data}`);
-		$.log(message.data);
+		$.log(mmessage.data);
       } catch (e) {
         $.logErr(e, resp);
       } finally {
