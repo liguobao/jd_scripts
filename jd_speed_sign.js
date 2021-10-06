@@ -89,8 +89,8 @@ async function jdGlobal() {
 
     //await signInit()
     //await sign()
-    //await invite()
-    //await invite2()
+    await invite()
+    await invite2()
     $.score = 0
     $.total = 0
     await taskList()
@@ -675,7 +675,10 @@ function taskGetUrl(function_id, body) {
 function invite2() {
   let t = +new Date()
   let inviterId = [
-    "5V7vHE23qh2EkdBHXRFDuA==",
+    "WEUXxd4x8h0K359Kf5A2qw==", //1411
+    "XJwlKlWbrwsljjXy+5pQKwba4VwlzH0V5Yh0lisK7HQ=", //9897
+	"IEoNHa1LAlo2xLRValDysA==", //6270
+	"x8YAOK322oa0QY/PpKqGhg==" //9606
   ][Math.floor((Math.random() * 1))]
   let headers = {
     'Host': 'api.m.jd.com',
@@ -703,8 +706,10 @@ function invite2() {
 function invite() {
   let t = +new Date()
   let inviterId = [
-    "5V7vHE23qh2EkdBHXRFDuA==",
-    "jbGBRBPo5DmwB9ntTCSVOGXuh1YQyccCuZpWwb3PlIc="
+    "WEUXxd4x8h0K359Kf5A2qw==", //1411
+    "XJwlKlWbrwsljjXy+5pQKwba4VwlzH0V5Yh0lisK7HQ=", //9897
+	"IEoNHa1LAlo2xLRValDysA==", //6270
+	"x8YAOK322oa0QY/PpKqGhg==" //9606
   ][Math.floor((Math.random() * 2))]
   var headers = {
     'Host': 'api.m.jd.com',
