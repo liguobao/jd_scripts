@@ -97,6 +97,7 @@ async function jdGlobal() {
     await queryJoy()
     //await signInit()
     await cash()
+	await inviterCode()
     await showMsg()
   } catch (e) {
     $.logErr(e)
@@ -671,6 +672,40 @@ function taskGetUrl(function_id, body) {
     }
   }
 }
+
+function inviterCode() {
+  let t = +new Date()
+  let headers = {
+    'Host': 'api.m.jd.com',
+    'accept': 'application/json, text/plain, */*',
+    'content-type': 'application/x-www-form-urlencoded',
+    'origin': 'https://gray.jd.com',
+    'accept-language': 'zh-cn',
+    'user-agent': $.isNode() ? (process.env.JS_USER_AGENT ? process.env.JS_USER_AGENT : (require('./JS_USER_AGENTS').USER_AGENT)) : ($.getdata('JSUA') ? $.getdata('JSUA') : "'jdltapp;iPad;3.1.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+    'referer': `https://gray.jd.com/`,
+    'Cookie': cookie
+  }
+
+  let dataString = `functionId=TaskInviteService&body={"method":"inviteTaskHomePage","data":{"channel":"1"}}&appid=market-task-h5&uuid=7cffe755aa41f17a5a6e73b826e3ecf1bab22276&_t=${t}`;
+
+  var options = {
+    url: 'https://api.m.jd.com/',
+    headers: headers,
+    body: dataString
+  }
+  $.post(options, (err, resp, data) => {
+    //console.log(data)
+	    if (data) {
+            data = JSON.parse(data);
+            if (data['code'] === 0) {
+			  console.log(data['data'].encryptionInviterPin);
+            }
+          } else {
+            console.log(`京东服务器返回空数据`)
+          }
+  })
+}
+
 
 function invite2() {
   let t = +new Date()
