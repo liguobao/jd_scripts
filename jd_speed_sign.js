@@ -675,11 +675,13 @@ function taskGetUrl(function_id, body) {
 function invite2() {
   let t = +new Date()
   let inviterId = [
-    "IEoNHa1LAlo2xLRValDysA==", //6270
-    "WEUXxd4x8h0K359Kf5A2qw==", //1411
-	"XJwlKlWbrwsljjXy+5pQKwba4VwlzH0V5Yh0lisK7HQ=", //9897
-	"x8YAOK322oa0QY/PpKqGhg==" //9606
-  ][Math.floor((Math.random() * 1))]
+    'IEoNHa1LAlo2xLRValDysA==', //6270
+    'WEUXxd4x8h0K359Kf5A2qw==', //1411
+	'XJwlKlWbrwsljjXy+5pQKwba4VwlzH0V5Yh0lisK7HQ=', //9897
+	'x8YAOK322oa0QY/PpKqGhg==', //9606
+  ]
+  $.authorCode = inviterId[random(0, inviterId.length)]
+  //console.log(`\n${$.authorCode}\n`);
   let headers = {
     'Host': 'api.m.jd.com',
     'accept': 'application/json, text/plain, */*',
@@ -687,7 +689,7 @@ function invite2() {
     'origin': 'https://assignment.jd.com',
     'accept-language': 'zh-cn',
     'user-agent': $.isNode() ? (process.env.JS_USER_AGENT ? process.env.JS_USER_AGENT : (require('./JS_USER_AGENTS').USER_AGENT)) : ($.getdata('JSUA') ? $.getdata('JSUA') : "'jdltapp;iPad;3.1.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
-    'referer': `https://assignment.jd.com/?inviterId=${encodeURIComponent(inviterId)}`,
+    'referer': `https://assignment.jd.com/?inviterId=${encodeURIComponent($.authorCode)}`,
     'Cookie': cookie
   }
 
@@ -706,8 +708,8 @@ function invite2() {
 function invite() {
   let t = +new Date()
   let inviterId = [
-    "IEoNHa1LAlo2xLRValDysA==", //6270
     "WEUXxd4x8h0K359Kf5A2qw==", //1411
+    "IEoNHa1LAlo2xLRValDysA==", //6270
 	"XJwlKlWbrwsljjXy+5pQKwba4VwlzH0V5Yh0lisK7HQ=", //9897
 	"x8YAOK322oa0QY/PpKqGhg==" //9606
   ][Math.floor((Math.random() * 2))]
@@ -800,6 +802,12 @@ function jsonParse(str) {
       return [];
     }
   }
+}
+
+function random(min, max) {
+
+    return Math.floor(Math.random() * (max - min)) + min;
+
 }
 
 !function (t, r) { "object" == typeof exports ? module.exports = exports = r() : "function" == typeof define && define.amd ? define([], r) : t.CryptoJS = r() }(this, function () {
