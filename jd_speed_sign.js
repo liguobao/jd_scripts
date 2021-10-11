@@ -714,6 +714,9 @@ function invite2() {
     'WEUXxd4x8h0K359Kf5A2qw==', //1411
 	'XJwlKlWbrwsljjXy+5pQKwba4VwlzH0V5Yh0lisK7HQ=', //9897
 	'x8YAOK322oa0QY/PpKqGhg==', //9606
+	'+wIMg50Td4RVFxCTzrtDTA==', //渣渣容
+	'QNRS2VHqqAIrJwoSYPXnNDQ7d1xnkn6seCtvGchtpnc=', //萬里獨行
+	'b8jBQAc82z8yN6P7jfTHKUkU42lUH0nrgKKcJh5kLNw=', //梵高好烦
   ]
   $.authorCode = inviterId[random(0, inviterId.length)]
   //console.log(`\n${$.authorCode}\n`);
