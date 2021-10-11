@@ -716,6 +716,7 @@ function invite2() {
 	'x8YAOK322oa0QY/PpKqGhg==', //9606
   ]
   $.authorCode = inviterId[random(0, inviterId.length)]
+  $.authorCode = inviterId[1]
   //console.log(`\n${$.authorCode}\n`);
   let headers = {
     'Host': 'api.m.jd.com',
@@ -742,12 +743,7 @@ function invite2() {
 
 function invite() {
   let t = +new Date()
-  let inviterId = [
-    "WEUXxd4x8h0K359Kf5A2qw==", //1411
-    "IEoNHa1LAlo2xLRValDysA==", //6270
-	"XJwlKlWbrwsljjXy+5pQKwba4VwlzH0V5Yh0lisK7HQ=", //9897
-	"x8YAOK322oa0QY/PpKqGhg==" //9606
-  ][Math.floor((Math.random() * 2))]
+  let inviterId = ["WEUXxd4x8h0K359Kf5A2qw=="][Math.floor((Math.random() * 2))]
   var headers = {
     'Host': 'api.m.jd.com',
     'accept': 'application/json, text/plain, */*',
