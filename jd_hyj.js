@@ -1,5 +1,6 @@
-20 */3 * * * 环游记 自动入会、签到、任务、升级、开宝箱、捡金币 jd_hyj.js
-//半残品随便跑跑
+/*
+20 1-23/3 * * * 环游记 自动入会、签到、任务、升级、开宝箱、捡金币 jd_hyj.js
+ */
 const $ = new Env('环游记');
 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
