@@ -720,26 +720,23 @@ function invite2() {
   ]
   $.authorCode = inviterId[random(0, inviterId.length)]
   //console.log(`\n${$.authorCode}\n`);
-  let headers = {
-    'Host': 'api.m.jd.com',
-    'accept': 'application/json, text/plain, */*',
-    'content-type': 'application/x-www-form-urlencoded',
-    'origin': 'https://assignment.jd.com',
-    'accept-language': 'zh-cn',
-    'user-agent': $.isNode() ? (process.env.JS_USER_AGENT ? process.env.JS_USER_AGENT : (require('./JS_USER_AGENTS').USER_AGENT)) : ($.getdata('JSUA') ? $.getdata('JSUA') : "'jdltapp;iPad;3.1.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
-    'referer': `https://assignment.jd.com/?inviterId=${encodeURIComponent($.authorCode)}`,
-    'Cookie': cookie
-  }
-
-  let dataString = `functionId=TaskInviteService&body={"method":"participateInviteTask","data":{"channel":"1","encryptionInviterPin":"${encodeURIComponent($.authorCode)}","type":1}}&appid=market-task-h5&uuid=&_t=${t}`;
-
-  var options = {
-    url: 'https://api.m.jd.com/',
-    headers: headers,
-    body: dataString
+  let options = {
+    url: "https://api.m.jd.com/",
+    body: `functionId=TaskInviteService&body=${JSON.stringify({"method":"participateInviteTask","data":{"channel":"1","encryptionInviterPin":encodeURIComponent(inviterId),"type":1}})}&appid=market-task-h5&uuid=&_t=${t}`,
+    headers: {
+      "Host": "api.m.jd.com",
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Origin": "https://gray.jd.com",
+      "Accept-Language": "zh-CN,zh-Hans;q=0.9",
+      "User-Agent": $.isNode() ? (process.env.JS_USER_AGENT ? process.env.JS_USER_AGENT : (require('./JS_USER_AGENTS').USER_AGENT)) : ($.getdata('JSUA') ? $.getdata('JSUA') : "'jdltapp;iPad;3.1.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+      "Referer": "https://gray.jd.com/",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Cookie": cookie
+    }
   }
   $.post(options, (err, resp, data) => {
-    // console.log(data)
+    //console.log(data)
   })
 }
 
@@ -751,25 +748,23 @@ function invite() {
 	"XJwlKlWbrwsljjXy+5pQKwba4VwlzH0V5Yh0lisK7HQ=", //9897
 	"x8YAOK322oa0QY/PpKqGhg==" //9606
   ][Math.floor((Math.random() * 2))]
-  var headers = {
-    'Host': 'api.m.jd.com',
-    'accept': 'application/json, text/plain, */*',
-    'content-type': 'application/x-www-form-urlencoded',
-    'origin': 'https://invite-reward.jd.com',
-    'accept-language': 'zh-cn',
-    'user-agent': $.isNode() ? (process.env.JS_USER_AGENT ? process.env.JS_USER_AGENT : (require('./JS_USER_AGENTS').USER_AGENT)) : ($.getdata('JSUA') ? $.getdata('JSUA') : "'jdltapp;iPad;3.1.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
-    'referer': 'https://invite-reward.jd.com/',
-    'Cookie': cookie
-  };
-
-  var dataString = `functionId=InviteFriendChangeAssertsService&body={"method":"attendInviteActivity","data":{"inviterPin":"${encodeURIComponent(inviterId)}","channel":1,"token":"","frontendInitStatus":""}}&referer=-1&eid=eidI9b2981202fsec83iRW1nTsOVzCocWda3YHPN471AY78%2FQBhYbXeWtdg%2F3TCtVTMrE1JjM8Sqt8f2TqF1Z5P%2FRPGlzA1dERP0Z5bLWdq5N5B2VbBO&aid=&client=ios&clientVersion=14.4.2&networkType=wifi&fp=-1&uuid=ab048084b47df24880613326feffdf7eee471488&osVersion=14.4.2&d_brand=iPhone&d_model=iPhone10,2&agent=-1&pageClickKey=-1&platform=3&lang=zh_CN&appid=market-task-h5&_t=${t}`;
-  var options = {
+  let options = {
     url: `https://api.m.jd.com/?t=${t}`,
-    headers: headers,
-    body: dataString
-  };
+    body: `functionId=InviteFriendChangeAssertsService&body=${JSON.stringify({"method":"attendInviteActivity","data":{"inviterPin":encodeURIComponent(inviterId),"channel":1,"token":"","frontendInitStatus":""}})}&referer=-1&eid=eidI9b2981202fsec83iRW1nTsOVzCocWda3YHPN471AY78%2FQBhYbXeWtdg%2F3TCtVTMrE1JjM8Sqt8f2TqF1Z5P%2FRPGlzA1dERP0Z5bLWdq5N5B2VbBO&aid=&client=ios&clientVersion=14.4.2&networkType=wifi&fp=-1&uuid=ab048084b47df24880613326feffdf7eee471488&osVersion=14.4.2&d_brand=iPhone&d_model=iPhone10,2&agent=-1&pageClickKey=-1&platform=3&lang=zh_CN&appid=market-task-h5&_t=${t}`,
+    headers: {
+      "Host": "api.m.jd.com",
+      "Accept": "application/json, text/plain, */*",
+      "Content-type": "application/x-www-form-urlencoded",
+      "Origin": "https://invite-reward.jd.com",
+      "Accept-Language": "zh-CN,zh-Hans;q=0.9",
+      "User-Agent": $.isNode() ? (process.env.JS_USER_AGENT ? process.env.JS_USER_AGENT : (require('./JS_USER_AGENTS').USER_AGENT)) : ($.getdata('JSUA') ? $.getdata('JSUA') : "'jdltapp;iPad;3.1.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+      "Referer": 'https://invite-reward.jd.com/',
+      "Accept-Encoding": "gzip, deflate, br",
+      "Cookie": cookie
+    }
+  }
   $.post(options, (err, resp, data) => {
-    // console.log(data)
+    //console.log(data)
   })
 }
 
