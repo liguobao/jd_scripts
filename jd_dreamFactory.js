@@ -451,7 +451,7 @@ async function helpFriends() {
   }
   if ($.canHelpFlag) {
     await shareCodesFormat();
-    for (let code of $.newShareCodes) {
+    for (let code of $.newShareCodes[random(0, $.newShareCodes.length)]) {
       if (code) {
 		  await $.wait(2000);
         if ($.encryptPin === code) {
@@ -1788,6 +1788,12 @@ function checkWhetherNeedAgain(resp, fun, url, name) {
       resolve(false);
     }
   });
+}
+
+function random(min, max) {
+
+    return Math.floor(Math.random() * (max - min)) + min;
+
 }
 
 // prettier-ignore
