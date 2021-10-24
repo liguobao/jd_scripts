@@ -1,3 +1,24 @@
+/*
+京东手机狂欢城活动
+活动时间: 2021-9-23至2021-11-13
+活动入口：暂无 [活动地址](https://carnivalcity.m.jd.com)
+往期奖励：
+a、第1名可获得实物手机一部
+b、 每日第2-10000名，可获得50个京豆
+c、 每日第10001-30000名可获得20个京豆
+脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
+===================quantumultx================
+[task_local]
+#京东手机狂欢城
+2 1-22/6 * * * jd_carnivalcity_new.js, tag=京东手机狂欢城, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+=====================Loon================
+[Script]
+cron "2 1-22/6 * * *" script-path=jd_carnivalcity_new.js, tag=京东手机狂欢城
+====================Surge================
+京东手机狂欢城 = type=cron,cronexp=2 1-22/6 * * *,wake-system=1,timeout=3600,script-path=jd_carnivalcity_new.js
+============小火箭=========
+5G狂欢城 = type=cron,script-path=jd_carnivalcity_new.js, cronexpr="2 1-22/6 * * *", timeout=3600, enable=true
+*/
 const $ = new Env('京东手机狂欢城');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
