@@ -451,7 +451,7 @@ async function helpFriends() {
   }
   if ($.canHelpFlag) {
     await shareCodesFormat();
-    for (let code of $.newShareCodes[random(0, $.newShareCodes.length)]) {
+    for (let code of $.newShareCodes) {
       if (code) {
 		  await $.wait(2000);
         if ($.encryptPin === code) {
