@@ -36,7 +36,7 @@ if ($.isNode()) {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-let allMessage = '';
+let NodeMessage = '';
 !(async () => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -73,7 +73,8 @@ let allMessage = '';
       hotInfo[$.UserName] = $.hot
     }
   }
-  for (let i = 0; i < cookiesArr.length; i++) {
+
+  for (let i = 100; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
     $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
     $.canHelp = true
@@ -97,6 +98,10 @@ let allMessage = '';
       }
     }
   }
+  if (NodeMessage) {
+    if ($.isNode()) await notify.sendNotify($.name, `${NodeMessage}`);
+    $.msg($.name, '', `${NodeMessage}`);
+  }
 })()
   .catch((e) => {
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -108,8 +113,182 @@ let allMessage = '';
 async function jdMofang() {
   console.log(`集魔方 赢大奖`)
   await getInteractionHomeInfo()
+  await $.wait(2000)
   console.log(`\n集魔方 抽京豆 赢新品`)
   await getInteractionInfo()
+  await $.wait(2000)
+  console.log(`\n开始抽京豆`)
+  //await queryexchange()
+  await exchangeNum()
+  //await exchangeNum3()
+  //await queryInteractiveRewardInfo()
+}
+
+function queryInteractiveRewardInfo(encryptProjectId, sourceCode) {
+  return new Promise(async (resolve) => {
+    $.post(taskUrl("queryInteractiveRewardInfo", {"encryptProjectId":"3pp3mvzmgcFm7mvU3S1wZihNKi1H","sourceCode":"acexinpin0823","ext":{"needExchangeRestScore":"1"}}), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} queryInteractiveInfo API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data)
+            console.log(data)
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data)
+      }
+    })
+  })
+}
+
+function queryexchange(encryptProjectId, sourceCode) {
+  return new Promise(async (resolve) => {
+    $.post(taskUrl("queryInteractiveInfo", {"encryptProjectId":"3pp3mvzmgcFm7mvU3S1wZihNKi1H","sourceCode":"acexinpin0823","ext":{}}), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} queryInteractiveInfo API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data)
+            console.log(data)
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data)
+      }
+    })
+  })
+}
+
+function exchangeNum(encryptProjectId, encryptAssignmentId, sourceCode, itemId = "", actionType = "") {
+  return new Promise((resolve) => {
+    $.post(taskUrl("doInteractiveAssignment", {"encryptProjectId":"3pp3mvzmgcFm7mvU3S1wZihNKi1H","encryptAssignmentId":"2qZXV5kAqBJjkJmYi8C2874WyHxj","sourceCode":"acexinpin0823","itemId":"","actionType":"","completionFlag":"","ext":{"exchangeNum":1}}), (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} doInteractiveAssignment API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data)
+			//console.log(data)
+			if (data.code === "0" && data.subCode === "0") {
+			  console.log(data.rewardsInfo.successRewards[3][0].rewardName);
+			  //NodeMessage += `【京东账号${$.index}】${$.nickName || $.UserName}\n小魔方抽奖:${data.rewardsInfo.successRewards[3][0].rewardName}\n\n`;
+            }else {
+            console.log(data)
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data)
+      }
+    })
+  })
+}
+
+function exchangeNum2(encryptProjectId, encryptAssignmentId, sourceCode, itemId = "", actionType = "") {
+  return new Promise((resolve) => {
+    $.post(taskUrl("doInteractiveAssignment", {"encryptProjectId":"3pp3mvzmgcFm7mvU3S1wZihNKi1H","encryptAssignmentId":"wE62TwscdA52Z4WkpTJq7NaMvfw","sourceCode":"acexinpin0823","itemId":"","actionType":"","completionFlag":"","ext":{"exchangeNum":1}}), (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} doInteractiveAssignment API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data)
+			//console.log(data)
+			if (data.code === "0" && data.subCode === "0") {
+			  console.log(data.rewardsInfo.successRewards[3][0].rewardName);
+			  //NodeMessage += `【京东账号${$.index}】${$.nickName || $.UserName}\n小魔方抽奖:${data.rewardsInfo.successRewards[3][0].rewardName}\n\n`;
+            }else {
+            console.log(data)
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data)
+      }
+    })
+  })
+}
+
+function exchangeNum3(encryptProjectId, encryptAssignmentId, sourceCode, itemId = "", actionType = "") {
+  return new Promise((resolve) => {
+    $.post(taskUrl("doInteractiveAssignment", {"encryptProjectId":"3pp3mvzmgcFm7mvU3S1wZihNKi1H","encryptAssignmentId":"2qZXV5kAqBJjkJmYi8C2874WyHxj","sourceCode":"acexinpin0823","itemId":"","actionType":"","completionFlag":"","ext":{"exchangeNum":1}}), (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} doInteractiveAssignment API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data)
+			//console.log(data)
+			if (data.code === "0" && data.subCode === "0") {
+			  console.log(data.rewardsInfo.successRewards[3][0].rewardName);
+			  //NodeMessage += `【京东账号${$.index}】${$.nickName || $.UserName}\n小魔方抽奖:${data.rewardsInfo.successRewards[3][0].rewardName}\n\n`;
+            }else {
+            console.log(data)
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data)
+      }
+    })
+  })
+}
+
+function exchangeNum1() {
+  let t = +new Date()
+  let headers = {
+    'Host': 'api.m.jd.com',
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Origin': 'https://h5.m.jd.com',
+      'Accept-Language': 'zh-cn',
+      'User-Agent': $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+      'Referer': 'https://h5.m.jd.com/babelDiy/Zeus/2bf3XEEyWG11pQzPGkKpKX2GxJz2/index.html?babelChannel=ttt2&doTask=c&lng=0.000000&lat=0.000000&encryptProjectId=3pp3mvzmgcFm7mvU3S1wZihNKi1H&sid=292c4ccd913580dd337c960907a3a23w&un_area=19_1601_3635_63129',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Cookie': cookie
+  }
+  let body1= `{"encryptProjectId":${$.encryptProjectId},"encryptAssignmentId":${$.encryptAssignmentId},"sourceCode":${$.sourceCode},"itemId":${$.itemId},"actionType":${$.actionType},"completionFlag":"","ext":{"exchangeNum":1}}`
+  let body2 =`&body=${escape(JSON.stringify(body))}&appid=content_ecology&client=wh5&clientVersion=1.0.0`
+  let dataString = `functionId=doInteractiveAssignment${body2}`;
+
+  var options = {
+    url: 'https://api.m.jd.com/',
+    headers: headers,
+    body: dataString
+  }
+  $.post(options, (err, resp, data) => {
+	//data ='{"msg":"success","code":"0","subCode":"0","rewardsInfo":{"successRewards":{"3":[{"poolId":1,"rewardName":"60个京豆","rewardId":45702,"quantity":60,"rewardImg":"https://m.360buyimg.com/babel/jfs/t1/198860/7/9545/4817/614b28beE14d69e18/b16912082f585170.png","rewardDesc":""}]},"failRewards":[],"poolRewardZeroStock":0},"assignmentInfo":{"completionCnt":1,"maxTimes":-1,"usedScore":5,"increUsedScore":5}}';
+    console.log(data)
+	    if (data) {
+            data = JSON.parse(data);
+			//console.log(data);
+            if (data.code === "0" && data.subCode === "0") {
+			  console.log(data.rewardsInfo.successRewards[3][0].rewardName);
+			  NodeMessage += `【京东账号${$.index}】${$.nickName || $.UserName}\n小魔方抽奖:${data.rewardsInfo.successRewards[3][0].rewardName}\n\n`;
+			  //console.log(NodeMessage)
+            }
+          } else {
+            console.log(`京东服务器返回空数据`)
+          }
+  })
 }
 
 async function getInteractionHomeInfo() {
