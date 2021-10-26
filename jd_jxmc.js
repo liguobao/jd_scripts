@@ -17,7 +17,7 @@
 const $ = new Env('惊喜牧场');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const JXUserAgent =  $.isNode() ? (process.env.JX_USER_AGENT ? process.env.JX_USER_AGENT : ``):``;
-const ByType = '4';
+const ByType = '888';
 let cookiesArr = [],token = {},ua = '';
 $.appId = 10028;
 let activeid = 'null';
