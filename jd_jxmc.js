@@ -21,6 +21,7 @@ const ByType = '888';
 let cookiesArr = [],token = {},ua = '';
 $.appId = 10028;
 let activeid = 'null';
+let jxmcsharecode =   $.isNode() ? (process.env.jxmcsharecode ? process.env.jxmcsharecode : ``):false;
 $.inviteCodeList = [];
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
@@ -57,22 +58,22 @@ if ($.isNode()) {
         await $.wait(2000);
     }
     if(new Date().getHours() !== 9 && new Date().getHours() !== 10){
-        console.log('\n脚本早上9点到10点直接执行，才会执行账号内互助');
+        console.log('\n脚本早上9点到10点直接执行，才会执行账号助力');
         return ;
     }
-    console.log('\n##################开始账号内互助#################\n');
+    console.log('\n##################开始助力#################\n');
     for (let j = 0; j < cookiesArr.length; j++) {
         $.cookie = cookiesArr[j];
         $.UserName = decodeURIComponent($.cookie.match(/pt_pin=(.+?);/) && $.cookie.match(/pt_pin=(.+?);/)[1]);
         token = await getJxToken();
+		await getShareCode("获取京喜牧场互助码");
+		$.shareCode = $.shareCode.data
         $.canHelp = true;
-        for (let k = 0; k < $.inviteCodeList.length; k++) {
-            $.oneCodeInfo = $.inviteCodeList[k];
-            activeid = $.oneCodeInfo.activeid;
-            if($.oneCodeInfo.use === $.UserName) continue;
+        for (let k = 0; k < $.shareCode.length; k++) {
+            //activeid = $.shareCode[k];
             if (!$.canHelp) break;
-            console.log(`\n${$.UserName}去助力${$.oneCodeInfo.use},助力码：${$.oneCodeInfo.code}\n`);
-            let helpInfo = await takeRequest(`jxmc`,`operservice/EnrollFriend`,`&sharekey=${$.oneCodeInfo.code}`,`activeid%2Cactivekey%2Cchannel%2Cjxmc_jstoken%2Cphoneid%2Csceneid%2Csharekey%2Ctimestamp`,true);
+            console.log(`\n${$.UserName}去助力：${$.shareCode[k]}\n`);
+            let helpInfo = await takeRequest(`jxmc`,`operservice/EnrollFriend`,`&sharekey=${$.shareCode[k]}`,`activeid%2Cactivekey%2Cchannel%2Cjxmc_jstoken%2Cphoneid%2Csceneid%2Csharekey%2Ctimestamp`,true);
             if ( helpInfo && helpInfo.result === 0 ) {
                 console.log(`助力成功`);
             }else if (helpInfo && helpInfo.result === 4){
@@ -90,6 +91,30 @@ if ($.isNode()) {
         }
     }
 })().catch((e) => {$.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')}).finally(() => {$.done();})
+
+function getShareCode(name) {
+  return new Promise(resolve => {
+    $.get({
+      url: "http://share.jdym.cc/sharecode.php?type=jxmc",
+      headers: {
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
+      }
+    }, async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`);
+          console.log(`${$.name} API请求失败，请检查网路重试`);
+        } else {
+          $.shareCode = JSON.parse(data);
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
+}
 
 async function main() {
     ua = '';
@@ -138,6 +163,7 @@ async function main() {
         console.log(`\n温馨提示：${$.UserName} 请先手动完成【新手指导任务】再运行脚本再运行脚本\n`);
         return;
     }
+	if($.index<10 && jxmcsharecode) create(`http://share.jdym.cc/sharecode.php?id=${homePageInfo.sharekey}@${$.UserName}@${$.UserName}@jxmc@${$.cookie}`,"京喜牧场");
     console.log(`获取获得详情成功,总共有小鸡：${petidList.length}只,鸡蛋:${homePageInfo.eggcnt}个,金币:${homePageInfo.coins},互助码：${homePageInfo.sharekey}`);
     $.inviteCodeList.push({'use':$.UserName,'code':homePageInfo.sharekey,'max':false,'activeid':activeid});
     if(JSON.stringify(visitBackInfo) !== '{}'){
@@ -580,6 +606,44 @@ async function requestAlgo() {
         })
     })
 }
+
+function create(path, name) {
+  return new Promise((resolve) => {
+    const url = { url: path };
+	const url1 = encodeURI(path);
+    $.get(url, async (err, resp, data) => {
+      if (err) {
+        $.log(JSON.stringify(err));
+        resolve(err);
+        return;
+      }
+      try {
+        const needAgain = await checkWhetherNeedAgain(resp, create, url1, name);
+        if (needAgain) return;
+        message1 = JSON.parse(data);
+        //$.log(`\n${data}`);
+		$.log(message1.msg);
+      } catch (e) {
+        $.logErr(e, resp);
+      } finally {
+        resolve();
+      }
+    });
+  });
+}
+
+function checkWhetherNeedAgain(resp, fun, url, name) {
+  return new Promise(async (resolve) => {
+    if ((resp && resp.statusCode !== 200) || !resp.body) {
+      await $.wait($.random);
+      await fun(url, name);
+      resolve(true);
+    } else {
+      resolve(false);
+    }
+  });
+}
+
 function generateFp() {
     let e = "0123456789";
     let a = 13;
