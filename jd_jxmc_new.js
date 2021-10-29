@@ -84,8 +84,8 @@ if ($.isNode()) {
     await pasture();
     await $.wait(2000);
   }
-    if(new Date().getHours() !== 8 && new Date().getHours() !== 12 && new Date().getHours() !== 15){
-        console.log('\n脚本只在8点、12点、16点才会执行账号助力');
+    if(new Date().getHours() !== 8 && new Date().getHours() !== 10 && new Date().getHours() !== 12 && new Date().getHours() !== 16){
+        console.log('\n脚本只在8点、10点、12点、16点才会执行账号助力');
         return ;
     }
   console.log('\n##################开始助力#################\n');
