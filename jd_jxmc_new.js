@@ -123,7 +123,7 @@ if ($.isNode()) {
         $.oneCodeInfo = $.shareCode[k];
         console.log(`\n${$.UserName}去助力：${$.shareCode[k]}\n`);
         await takeGetRequest('help');
-        await $.wait(2000);
+        await $.wait(3000);
         }
       }
 })()
