@@ -56,6 +56,32 @@ if ($.isNode()) {
     $.msg($.name, "【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取", "https://bean.m.jd.com/bean/signIndex.action", { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
     return;
   }
+  
+   $.shareCodes.push({
+                  'use': '作者1',
+                  'smp': '8613b41265e229f7a07909abc55fa8cc',
+                  'num':  0,
+                  'max': false
+                })
+   $.shareCodes.push({
+                  'use': '作者2',
+                  'smp': '7aa3a9b16fb15b17af301879cd6eca48',
+                  'num':  0,
+                  'max': false
+                })
+   $.shareCodes.push({
+                  'use': '作者3',
+                  'smp': '4c48e26d90ee8c83aa507dff36881d12',
+                  'num':  0,
+                  'max': false
+                })
+   $.shareCodes.push({
+                  'use': '作者4',
+                  'smp': 'ca91dec0c5b3ff70af182651b5d64290',
+                  'num':  0,
+                  'max': false
+                })
+	  
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -67,11 +93,13 @@ if ($.isNode()) {
       }
       if (i === 0) console.log(`\n正在收集助力码请等待\n`)
       UA = `jdpingou;iPhone;4.13.0;14.4.2;${randomString(40)};network/wifi;model/iPhone10,2;appBuild/100609;ADID/00000000-0000-0000-0000-000000000000;supportApplePay/1;hasUPPay/0;pushNoticeIsOpen/1;hasOCPay/0;supportBestPay/0;session/${Math.random * 98 + 1};pap/JA2019_3111789;brand/apple;supportJDSHWK/1;Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148`
-      await signhb(1)
-      await $.wait(500)
+	  await signhb(1)
+      await $.wait(1500)
       UAInfo[$.UserName] = UA
     }
   }
+  console.log($.shareCodes)
+  
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
