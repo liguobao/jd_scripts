@@ -14,9 +14,9 @@
 [Script]
 cron "55 17 * * *" script-path=jd_unsubscribe_10.js,tag=取关京东店铺商品
 ============Surge=============
-取关京东店铺商品 = type=cron,cronexp="25 22 * * *",wake-system=1,timeout=3600,script-path=jd_unsubscribe_10.js
+取关京东店铺商品 = type=cron,cronexp="55 17 * * *",wake-system=1,timeout=3600,script-path=jd_unsubscribe_10.js
 ===========小火箭========
-取关京东店铺商品 = type=cron,script-path=jd_unsubscribe_10.js, cronexpr="25 22 * * *", timeout=3600, enable=true
+取关京东店铺商品 = type=cron,script-path=jd_unsubscribe_10.js, cronexpr="55 17 * * *", timeout=3600, enable=true
  */
 const $ = new Env('取关京东店铺和商品1');
 //Node.js用户请在jdCookie.js处填写京东ck;
