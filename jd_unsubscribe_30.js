@@ -9,16 +9,16 @@
 ==============Quantumult X===========
 [task_local]
 #取关京东店铺商品
-55 23 * * * jd_unsubscribe.js, tag=取关京东店铺商品, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+55 13 * * * jd_unsubscribe_30.js, tag=取关京东店铺商品, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 ===========Loon============
 [Script]
-cron "55 23 * * *" script-path=jd_unsubscribe.js,tag=取关京东店铺商品
+cron "55 13 * * *" script-path=jd_unsubscribe_30.js,tag=取关京东店铺商品
 ============Surge=============
-取关京东店铺商品 = type=cron,cronexp="55 23 * * *",wake-system=1,timeout=3600,script-path=jd_unsubscribe.js
+取关京东店铺商品 = type=cron,cronexp="55 13 * * *",wake-system=1,timeout=3600,script-path=jd_unsubscribe_30.js
 ===========小火箭========
-取关京东店铺商品 = type=cron,script-path=jd_unsubscribe.js, cronexpr="55 23 * * *", timeout=3600, enable=true
+取关京东店铺商品 = type=cron,script-path=jd_unsubscribe_30.js, cronexpr="55 13 * * *", timeout=3600, enable=true
  */
-const $ = new Env('取关京东店铺和商品');
+const $ = new Env('取关京东店铺和商品3');
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -35,8 +35,8 @@ if ($.isNode()) {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 const jdNotify = $.getdata('jdUnsubscribeNotify');//是否关闭通知，false打开通知推送，true关闭通知推送
-let goodPageSize = $.getdata('jdUnsubscribePageSize') || 20;// 运行一次取消多全部已关注的商品。数字0表示不取关任何商品
-let shopPageSize = $.getdata('jdUnsubscribeShopPageSize') || 20;// 运行一次取消全部已关注的店铺。数字0表示不取关任何店铺
+let goodPageSize = $.getdata('jdUnsubscribePageSize') || 200;// 运行一次取消多全部已关注的商品。数字0表示不取关任何商品
+let shopPageSize = $.getdata('jdUnsubscribeShopPageSize') || 200;// 运行一次取消全部已关注的店铺。数字0表示不取关任何店铺
 let stopGoods = $.getdata('jdUnsubscribeStopGoods') || '';//遇到此商品不再进行取关，此处内容需去商品详情页（自营处）长按拷贝商品信息
 let stopShop = $.getdata('jdUnsubscribeStopShop') || '';//遇到此店铺不再进行取关，此处内容请尽量从头开始输入店铺名称
 const JD_API_HOST = 'https://wq.jd.com/fav';
@@ -44,7 +44,7 @@ const JD_API_HOST = 'https://wq.jd.com/fav';
   if (!cookiesArr[0]) {
     $.msg('【京东账号一】取关京东店铺商品失败', '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
   }
-  for (let i = 0; i < cookiesArr.length; i++) {
+  for (let i = 20; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
