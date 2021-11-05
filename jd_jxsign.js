@@ -56,31 +56,6 @@ if ($.isNode()) {
     $.msg($.name, "【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取", "https://bean.m.jd.com/bean/signIndex.action", { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
     return;
   }
-  
-   $.shareCodes.push({
-                  'use': '作者1',
-                  'smp': '8613b41265e229f7a07909abc55fa8cc',
-                  'num':  0,
-                  'max': false
-                })
-   $.shareCodes.push({
-                  'use': '作者2',
-                  'smp': '7aa3a9b16fb15b17af301879cd6eca48',
-                  'num':  0,
-                  'max': false
-                })
-   $.shareCodes.push({
-                  'use': '作者3',
-                  'smp': '4c48e26d90ee8c83aa507dff36881d12',
-                  'num':  0,
-                  'max': false
-                })
-   $.shareCodes.push({
-                  'use': '作者4',
-                  'smp': 'ca91dec0c5b3ff70af182651b5d64290',
-                  'num':  0,
-                  'max': false
-                })
 	  
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
@@ -98,7 +73,7 @@ if ($.isNode()) {
       UAInfo[$.UserName] = UA
     }
   }
-  console.log($.shareCodes)
+  //console.log($.shareCodes)
   
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
