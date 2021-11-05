@@ -75,7 +75,7 @@ async function main() {
             if(i === 0 && $.shareCode){
                 await getCoupons($.shareCode);
             }else{
-                await getCoupons("");
+                await getCoupons($.shareCode);
             }
         }
         await $.wait(5000)
