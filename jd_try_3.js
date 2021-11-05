@@ -13,7 +13,7 @@ cron 10 16 * * * jd_try_3.js
  * @Address: https://github.com/X1a0He/jd_scripts_fixed/blob/main/jd_try_xh.js
  * @LastEditors: X1a0He
  */
-const $ = new Env('京东试用2')
+const $ = new Env('京东试用3')
 const URL = 'https://api.m.jd.com/client.action'
 let trialActivityIdList = []
 let trialActivityTitleList = []
