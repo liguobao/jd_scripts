@@ -1,5 +1,5 @@
 /*
-cron "30 8 * * *" script-path=jx_products_detail.js,tag=京喜工厂商品列表详情
+cron "30 8 * * *" script-path=jd_products_detail.js,tag=京喜工厂商品列表详情
 **/
 const $ = new Env('京喜工厂商品列表详情');
 const JD_API_HOST = 'https://m.jingxi.com/';
