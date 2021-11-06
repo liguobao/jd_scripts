@@ -33,6 +33,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let allMessage = '';
 let ReturnMessage = '';
+let N_NUM = process.env.N_NUM || 15;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
@@ -157,7 +158,7 @@ async function showMsg() {
   }
   ReturnMessage+=`${$.message}\n\n`;
   allMessage+=ReturnMessage;
-  if ($.index % 15 === 0) {
+  if ($.index % N_NUM === 0) {
     if ($.isNode() && allMessage) {
       await notify.sendNotify(`${$.name}`, `${allMessage}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
       allMessage=''
