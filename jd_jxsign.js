@@ -73,7 +73,7 @@ if ($.isNode()) {
       UAInfo[$.UserName] = UA
     }
   }
-  //console.log($.shareCodes)
+  console.log($.shareCodes)
   
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
