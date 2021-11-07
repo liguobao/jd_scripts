@@ -62,6 +62,7 @@ if ($.isNode()) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
       $.isLogin = true;
+	  $.index = i + 1;
       await TotalBean()
       if (!$.isLogin) {
         continue
@@ -188,7 +189,7 @@ function signhb(type = 1) {
                   'num': helpNum || 0,
                   'max': max
                 })
-				if ($.index === 0 && cookiesArr.length > 30){
+				if ($.index === 1 && cookiesArr.length > 30){
 					$.shareCodes.push({
 					  'use': "0",
 					  'smp': "7aa3a9b16fb15b17af301879cd6eca48",
@@ -196,7 +197,7 @@ function signhb(type = 1) {
 					  'max': false
 					})
 				}
-				if ($.index === 0 && cookiesArr.length < 30){
+				if ($.index === 1 && cookiesArr.length < 30){
 					$.shareCodes.push({
 					  'use': "0",
 					  'smp': "4c48e26d90ee8c83aa507dff36881d12",
