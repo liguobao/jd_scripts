@@ -183,12 +183,23 @@ function signhb(type = 1) {
               if (status === 1) {
                 let max = false
                 if (helpNum == domax) max = true
+				
+				if ($.index === 1 && cookiesArr.length < 10){
+					$.shareCodes.push({
+					  'use': "0",
+					  'smp': "c84900c6f4d143013fbf2c1481e54ad8",
+					  'num': 0,
+					  'max': false
+					})
+				}
+				
                 $.shareCodes.push({
                   'use': $.UserName,
                   'smp': smp,
                   'num': helpNum || 0,
                   'max': max
                 })
+				
 				if ($.index === 1 && cookiesArr.length > 30){
 					$.shareCodes.push({
 					  'use': "0",
@@ -201,14 +212,6 @@ function signhb(type = 1) {
 					$.shareCodes.push({
 					  'use': "0",
 					  'smp': "4c48e26d90ee8c83aa507dff36881d12",
-					  'num': 0,
-					  'max': false
-					})
-				}
-				if ($.index === 1 && cookiesArr.length < 10){
-					$.shareCodes.push({
-					  'use': "0",
-					  'smp': "c84900c6f4d143013fbf2c1481e54ad8",
 					  'num': 0,
 					  'max': false
 					})
