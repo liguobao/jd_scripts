@@ -194,7 +194,7 @@ async function taskList() {
         try {
           if (err) {
             console.log(`${JSON.stringify(err)}`)
-            console.log(`${$.name} API请求失败，请检查网路重试`)
+            console.log(`${$.name} taskList API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
@@ -203,7 +203,7 @@ async function taskList() {
                 if (task.taskInfo.status === 0) {
                   if (task.taskType >= 1000) {
                     await doTask(task.taskType)
-                    await $.wait(1500)
+                    await $.wait(3000)
                   } else {
                     $.canStartNewItem = true
                     while ($.canStartNewItem) {
@@ -265,14 +265,14 @@ async function queryJoy() {
         try {
           if (err) {
             console.log(`${JSON.stringify(err)}`)
-            console.log(`${$.name} API请求失败，请检查网路重试`)
+            console.log(`${$.name} queryJoy API请求失败，请检查网路重试`)
           } else {
             if (safeGet(data)) {
               data = JSON.parse(data);
               if (data.data.taskBubbles)
                 for (let task of data.data.taskBubbles) {
                   await rewardTask(task.id, task.activeType)
-                  await $.wait(1000)
+                  await $.wait(3000)
                 }
             }
           }
@@ -294,7 +294,7 @@ async function rewardTask(id, taskId) {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
-          console.log(`${$.name} API请求失败，请检查网路重试`)
+          console.log(`${$.name} rewardTask API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
@@ -331,7 +331,7 @@ async function queryItem(activeType = 1) {
             data = JSON.parse(data);
             if (data.code === 0 && data.data) {
               await startItem(data.data.nextResource, activeType)
-              await $.wait(1000)
+              await $.wait(3000)
             } else {
               console.log(`商品任务开启失败，${data.message}`)
               $.canStartNewItem = false
@@ -372,7 +372,7 @@ async function startItem(activeId, activeType) {
                 if (activeType !== 3)
                   videoBrowsing = activeType === 1 ? 5 : 10
                 console.log(`【${taskCompletionProgress + 1}/${taskCompletionLimit}】浏览商品任务记录成功，等待${videoBrowsing}秒`)
-                await $.wait(videoBrowsing * 1150)
+                await $.wait(videoBrowsing * 1250)
                 await endItem(data.data.uuid, activeType, activeId, activeType === 3 ? videoBrowsing : "")
               } else {
                 console.log(`${$.taskName}任务已达上限`)
