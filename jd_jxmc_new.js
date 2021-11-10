@@ -805,6 +805,13 @@ function dealReturn(type, data) {
     case 'GetVisitBackInfo':
       data = JSON.parse(data.match(new RegExp(/jsonpCBK.?\((.*);*/))[1]);
       if (data.ret === 0) {
+        $.GetVisitBackInfo = data.data;
+      }
+      //console.log(JSON.stringify(data));
+      break;
+    case 'GetVisitBackCabbage':
+      data = JSON.parse(data.match(new RegExp(/jsonpCBK.?\((.*);*/))[1]);
+      if (data.ret === 0) {
         console.log(`收取白菜成功，获得${data.data.drawnum}`);
       }
       break;
@@ -837,6 +844,8 @@ function dealReturn(type, data) {
       if (data.ret === 0) {
         if (data.data.prizetype === 1) {
           console.log(`抽奖获得：1张${cardinfo[data.data.cardtype]}卡片`)
+        } else if (data.data.prizetype === 2) {
+          console.log(`抽奖获得：${data.data.rewardinfo.prizevalue / 100}红包`)
         } else if (data.data.prizetype === 3) {
           console.log(`抽奖获得：${data.data.addcoins}金币`)
         } else {
