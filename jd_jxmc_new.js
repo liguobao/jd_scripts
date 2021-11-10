@@ -106,8 +106,8 @@ if ($.isNode()) {
     await pasture();
     await $.wait(2000);
   }
-  if(new Date().getHours() > 17){
-        console.log('\n17点后不执行账号助力');
+  if(new Date().getHours() > 19){
+        console.log('\n19点后不执行账号助力');
         return ;
     }
   console.log('\n##################开始助力#################\n');
@@ -115,15 +115,22 @@ if ($.isNode()) {
   for (let j = 0; j < cookiesArr.length; j++) {
       $.cookie = cookiesArr[j];
       $.UserName = decodeURIComponent($.cookie.match(/pt_pin=(.+?);/) && $.cookie.match(/pt_pin=(.+?);/)[1]);
+	  $.canHelp = true;
       UA = `jdpingou;iPhone;4.13.0;14.4.2;${randomString(40)};network/wifi;model/iPhone10,2;appBuild/100609;supportApplePay/1;hasUPPay/0;pushNoticeIsOpen/1;hasOCPay/0;supportBestPay/0;session/${Math.random * 98 + 1};pap/JA2019_3111789;brand/apple;supportJDSHWK/1;Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148`
       token = await getJxToken()
 	  await getShareCode("获取京喜牧场互助码");
 	  $.shareCode = $.shareCode.data
       for (let k = 0; k < $.shareCode.length; k++) {
-        $.oneCodeInfo = $.shareCode[k];
-        console.log(`\n${$.UserName}去助力：${$.shareCode[k]}\n`);
-        await takeGetRequest('help');
-        await $.wait(3000);
+		  $.delcode = false
+		  $.oneCodeInfo = $.shareCode[k];
+		  console.log(`\n${$.UserName}去助力：${$.shareCode[k]}\n`);
+		  await takeGetRequest('help');
+		  await $.wait(2000);
+		  if ($.delcode) {
+		      $.shareCode.splice(j, 1)
+		      j--
+		      continue
+		    }
         }
       }
 })()
@@ -772,26 +779,30 @@ function dealReturn(type, data) {
       break;
     case 'help':
       data = JSON.parse(data.match(new RegExp(/jsonpCBK.?\((.*);*/))[1]);
-      if (data.ret === 0 && data.data.result === 0) {
-        console.log(`助力成功`);
-      } else if (data.ret === 0 && data.data.result === 4) {
-        console.log(`助力次数已用完 或者已助力`);
-        //$.canHelp = false;
-      } else if (data.ret === 0 && data.data.result === 5) {
-        console.log(`助力已满`);
-        $.oneCodeInfo.max = true;
+      if (data.ret === 0) {
+        if (data.data.result === 0) {
+          console.log(`助力成功`);
+        } else if (data.data.result === 1) {
+          console.log(`不能助力自己`);
+        } else if (data.data.result === 3) {
+          console.log(`该好友助力已满`);
+          $.delcode = true;
+        } else if (data.data.result === 4) {
+          console.log(`助力次数已用完`);
+          $.canHelp = false;
+        } else if (data.data.result === 5) {
+          console.log(`已经助力过此好友`);
+        } else {
+          console.log(JSON.stringify(data))
+        }
+      } else if (data.ret === 1016) {
+        console.log(`活动太火爆了，还是去买买买吧~`);
+        $.canHelp = false;
       } else {
         console.log(JSON.stringify(data))
       }
       break;
     case 'GetVisitBackInfo':
-      data = JSON.parse(data.match(new RegExp(/jsonpCBK.?\((.*);*/))[1]);
-      if (data.ret === 0) {
-        $.GetVisitBackInfo = data.data;
-      }
-      //console.log(JSON.stringify(data));
-      break;
-    case 'GetVisitBackCabbage':
       data = JSON.parse(data.match(new RegExp(/jsonpCBK.?\((.*);*/))[1]);
       if (data.ret === 0) {
         console.log(`收取白菜成功，获得${data.data.drawnum}`);
