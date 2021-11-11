@@ -106,8 +106,8 @@ if ($.isNode()) {
     await pasture();
     await $.wait(2000);
   }
-  if(new Date().getHours() > 19){
-        console.log('\n19点后不执行账号助力');
+  if(new Date().getHours() > 14){
+        console.log('\n14点后不执行账号助力');
         return ;
     }
   console.log('\n##################开始助力#################\n');
