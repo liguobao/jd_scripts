@@ -211,7 +211,7 @@ function signhb(type = 1) {
 				if ($.index === 1 && cookiesArr.length > 30){
 					$.shareCodes.push({
 					  'use': "0",
-					  'smp': "7aa3a9b16fb15b17af301879cd6eca48",
+					  'smp': "c84900c6f4d143013fbf2c1481e54ad8",
 					  'num': 0,
 					  'max': false
 					})
@@ -219,7 +219,7 @@ function signhb(type = 1) {
 				if ($.index === 1 && cookiesArr.length < 30 && cookiesArr.length > 20){
 					$.shareCodes.push({
 					  'use': "0",
-					  'smp': "4c48e26d90ee8c83aa507dff36881d12",
+					  'smp': "c84900c6f4d143013fbf2c1481e54ad8",
 					  'num': 0,
 					  'max': false
 					})
