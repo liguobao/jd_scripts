@@ -66,7 +66,7 @@ async function main() {
         $.url2 = '';
         $.eid = '';
         await getInfo1();
-		await $.wait(3000)
+		//await $.wait(3000)
 		await getInfo3()
 		await $.wait(3000)
 		//await $.wait(3000)
@@ -260,7 +260,7 @@ async function getInfo2() {
 async function getInfo1(cookie){
     return new Promise(resolve => {
         const options = {
-            url: `https://u.jd.com/${$.code}`,
+            url: `https://u.jd.com/${$.code}?s=${$.shareCode}`,
             followRedirect:false,
             headers: {
                 'Cookie': cookie,
@@ -295,7 +295,7 @@ async function getInfo1(cookie){
 async function getInfo3(cookie){
     return new Promise(resolve => {
         const options = {
-            url: `https://u.jd.com/${$.code1}`,
+            url: `https://u.jd.com/${$.code1}?s=${$.shareCode}`,
             followRedirect:false,
             headers: {
                 'Cookie': cookie,
