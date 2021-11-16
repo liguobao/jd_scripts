@@ -111,7 +111,7 @@ if ($.isNode()) {
       await $.wait(2000)
       if ($.canHelp) {
         if ($.shareCodes && $.shareCodes.length) {
-          console.log(`\n开始内部互助\n`)
+          //console.log(`\n开始内部互助\n`)
           for (let j = 0; j < $.shareCodes.length; j++) {
             if ($.shareCodes[j].num == $.domax) {
               $.shareCodes.splice(j, 1)
@@ -211,7 +211,7 @@ function signhb(type = 1) {
 				if ($.index === 1 && cookiesArr.length > 30){
 					$.shareCodes.push({
 					  'use': "0",
-					  'smp': "c84900c6f4d143013fbf2c1481e54ad8",
+					  'smp': "7aa3a9b16fb15b17af301879cd6eca48",
 					  'num': 0,
 					  'max': false
 					})
