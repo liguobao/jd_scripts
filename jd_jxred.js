@@ -1,12 +1,12 @@
 /*
 双十一无门槛红包
-cron 0 1,12,20 * * * https://raw.githubusercontent.com/star261/jd/main/scripts/jd_jxred.js
+cron 0 10,12,20 * * * https://raw.githubusercontent.com/star261/jd/main/scripts/jd_jxred.js
 返利变量：FLCODE，默认给脚本作者返利，若需要返利给自己，请自己修改返利变量FLCODE；例：FLCODE="你的返利code"
 * */
 const $ = new Env('双11红包');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
-const flCode = 'yKYChY9';
+const flCode = '2wPQ4U7';
 let cookiesArr = [];
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
@@ -21,7 +21,9 @@ if ($.isNode()) {
         ...$.toObj($.getdata("CookiesJD") || "[]").map((item) => item.cookie)].filter((item) => !!item);
 }
 let cookie = '';
-$.code = 'yKYChY9';
+$.code = '2KP66D0';
+$.code1 = '2wPQ4U7';
+
 $.shareCode = 'zOS9y';
 !(async () => {
     if (!cookiesArr[0]) {
@@ -64,6 +66,13 @@ async function main() {
         $.url2 = '';
         $.eid = '';
         await getInfo1();
+		await $.wait(3000)
+		await getInfo3()
+		await $.wait(3000)
+		//await $.wait(3000)
+		//await getInfo3("2KP66D0")
+		//await $.wait(3000)
+		//await getInfo3("2dPq0I1")
         if(!$.url1){console.log(`${userName},初始化1失败,可能黑号`);$.hotFlag = true;break;}
         await getInfo2();
         if(!$.url2){console.log(`${userName},初始化2失败,可能黑号`);$.hotFlag = true;break;}
@@ -246,7 +255,79 @@ async function getInfo2() {
         })
     })
 }
+
+
 async function getInfo1(cookie){
+    return new Promise(resolve => {
+        const options = {
+            url: `https://u.jd.com/${$.code}`,
+            followRedirect:false,
+            headers: {
+                'Cookie': cookie,
+                'user-agent': $.UA
+            }
+        }
+        $.get(options, async (err, resp, data) => {
+            try {
+                let setcookies = resp && resp['headers'] && (resp['headers']['set-cookie'] || resp['headers']['Set-Cookie'] || '') || '';
+                let setcookie = ''
+                if(setcookies){
+                    if(typeof setcookies != 'object'){
+                        setcookie = setcookies.split(',')
+                    }else setcookie = setcookies
+                    for (let ck of setcookie) {
+                        let name = ck.split(";")[0].trim()
+                        if(name.split("=")[1]){
+                            if($.newCookie.indexOf(name.split("=")[1]) == -1) $.newCookie += name.replace(/ /g,'')+'; '
+                        }
+                    }
+                }
+                $.url1 = data.match(/(https:\/\/u\.jd\.com\/jda[^']+)/) && data.match(/(https:\/\/u\.jd\.com\/jda[^']+)/)[1] || ''
+            } catch (e) {
+                $.logErr(e, resp);
+            } finally {
+                resolve(data);
+            }
+        })
+    })
+}
+
+async function getInfo3(cookie){
+    return new Promise(resolve => {
+        const options = {
+            url: `https://u.jd.com/${$.code1}`,
+            followRedirect:false,
+            headers: {
+                'Cookie': cookie,
+                'user-agent': $.UA
+            }
+        }
+        $.get(options, async (err, resp, data) => {
+            try {
+                let setcookies = resp && resp['headers'] && (resp['headers']['set-cookie'] || resp['headers']['Set-Cookie'] || '') || '';
+                let setcookie = ''
+                if(setcookies){
+                    if(typeof setcookies != 'object'){
+                        setcookie = setcookies.split(',')
+                    }else setcookie = setcookies
+                    for (let ck of setcookie) {
+                        let name = ck.split(";")[0].trim()
+                        if(name.split("=")[1]){
+                            if($.newCookie.indexOf(name.split("=")[1]) == -1) $.newCookie += name.replace(/ /g,'')+'; '
+                        }
+                    }
+                }
+                $.url1 = data.match(/(https:\/\/u\.jd\.com\/jda[^']+)/) && data.match(/(https:\/\/u\.jd\.com\/jda[^']+)/)[1] || ''
+            } catch (e) {
+                $.logErr(e, resp);
+            } finally {
+                resolve(data);
+            }
+        })
+    })
+}
+
+async function getInfo4(cookie){
     return new Promise(resolve => {
         const options = {
             url: `https://u.jd.com/${$.code}?s=${$.shareCode}`,
@@ -280,6 +361,7 @@ async function getInfo1(cookie){
         })
     })
 }
+
 const navigator = {
     userAgent: require('./USER_AGENTS').USER_AGENT,
     plugins: { length: 0 },
