@@ -120,7 +120,7 @@ if ($.isNode()) {
       token = await getJxToken()
 	  await getShareCode("获取京喜牧场互助码");
 	  $.shareCode = $.shareCode.data
-      for (let k = 0; k < $.shareCode.length; k++) {
+      for (let k = 0; k < $.shareCode.length && $.canHelp; j++) {
 		  $.delcode = false
 		  $.oneCodeInfo = $.shareCode[k];
 		  console.log(`\n${$.UserName}去助力：${$.shareCode[k]}\n`);
