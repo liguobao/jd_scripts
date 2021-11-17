@@ -798,6 +798,9 @@ function dealReturn(type, data) {
       } else if (data.ret === 1016) {
         console.log(`活动太火爆了，还是去买买买吧~`);
         $.canHelp = false;
+      } else if (data.ret === 1017) {
+        console.log(`操作太频繁啦，稍后再试吧~`);
+        $.canHelp = false;
       } else {
         console.log(JSON.stringify(data))
       }
