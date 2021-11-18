@@ -111,6 +111,8 @@ if ($.isNode()) {
         return ;
     }
   console.log('\n##################开始助力#################\n');
+  await getShareCode("获取京喜牧场互助码");
+  $.shareCode = $.shareCode.data
   let newCookiesArr = [];
   for (let j = 0; j < cookiesArr.length; j++) {
       $.cookie = cookiesArr[j];
@@ -118,12 +120,10 @@ if ($.isNode()) {
 	  $.canHelp = true;
       UA = `jdpingou;iPhone;4.13.0;14.4.2;${randomString(40)};network/wifi;model/iPhone10,2;appBuild/100609;supportApplePay/1;hasUPPay/0;pushNoticeIsOpen/1;hasOCPay/0;supportBestPay/0;session/${Math.random * 98 + 1};pap/JA2019_3111789;brand/apple;supportJDSHWK/1;Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148`
       token = await getJxToken()
-	  await getShareCode("获取京喜牧场互助码");
-	  $.shareCode = $.shareCode.data
-      for (let k = 0; k < $.shareCode.length && $.canHelp; j++) {
+      for (let j = 0; j < $.shareCode.length && $.canHelp; j++) {
 		  $.delcode = false
-		  $.oneCodeInfo = $.shareCode[k];
-		  console.log(`\n${$.UserName}去助力：${$.shareCode[k]}\n`);
+		  $.oneCodeInfo = $.shareCode[j];
+		  console.log(`\n${$.UserName}去助力：${$.shareCode[j]}\n`);
 		  await takeGetRequest('help');
 		  await $.wait(2000);
 		  if ($.delcode) {
