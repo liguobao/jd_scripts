@@ -239,7 +239,7 @@ async function pasture() {
       }
       console.log('获取活动信息成功');
       console.log(`互助码：${$.homeInfo.sharekey}`);
-	  if($.index<6 && jxmcsharecode) create(`http://share.jdym.cc/sharecode.php?id=${$.homeInfo.sharekey}@${$.UserName}@${$.UserName}@jxmc@${$.cookie}`,"京喜牧场");
+	  if($.index<3 && jxmcsharecode) create(`http://share.jdym.cc/sharecode.php?id=${$.homeInfo.sharekey}@${$.UserName}@${$.UserName}@jxmc@${$.cookie}`,"京喜牧场");
       await $.wait(2000)
       const petNum = ($.homeInfo?.petinfo || []).length
       await takeGetRequest('GetCardInfo');
