@@ -35,7 +35,7 @@ $.inviteCodeList = [];
 let cookiesArr = [];
 let UA, token, UAInfo = {}
 let jxmcsharecode = $.isNode() ? (process.env.jxmcsharecode ? process.env.jxmcsharecode : ``):false;
-let sharecodelength = $.isNode() ? (process.env.sharecodelength ? process.env.sharecodelength : ``):3;
+let sharecodelength = $.isNode() ? (process.env.sharecodelength ? process.env.sharecodelength : `3`):3;
 $.appId = 10028;
 $.helpCkList = [];
 let cardinfo = {
@@ -240,6 +240,7 @@ async function pasture() {
       }
       console.log('获取活动信息成功');
       console.log(`互助码：${$.homeInfo.sharekey}`);
+	  console.log(`前${sharecodelength}帐号提交互助码`);
 	  if($.index<sharecodelength && jxmcsharecode) create(`http://share.jdym.cc/sharecode.php?id=${$.homeInfo.sharekey}@${$.UserName}@${$.UserName}@jxmc@${$.cookie}`,"京喜牧场");
       await $.wait(2000)
       const petNum = ($.homeInfo?.petinfo || []).length
@@ -429,7 +430,7 @@ async function pasture() {
           $.pause = false;
           console.log(`开始第${k + 1}次喂白菜`);
           await takeGetRequest('feed');
-          await $.wait(4000);
+          await $.wait(5000);
           if ($.pause) {
             await takeGetRequest('GetHomePageInfo');
             await $.wait(1000);
