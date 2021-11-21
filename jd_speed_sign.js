@@ -783,7 +783,7 @@ function taskGetUrl(function_id, body) {
       'Host': 'api.m.jd.com',
       'Accept': '*/*',
       'Connection': 'keep-alive',
-      'user-agent': 'JDMobileLite/3.5.6 (iPhone; iOS 14.5; Scale/2.00)'
+      'user-agent': 'JDMobileLite/3.5.6 (iPhone; iOS 14.5; Scale/2.00)',
       'Accept-Language': 'zh-Hans-CN;q=1,en-CN;q=0.9',
       'Accept-Encoding': 'gzip, deflate, br',
       'Content-Type': "application/x-www-form-urlencoded",
