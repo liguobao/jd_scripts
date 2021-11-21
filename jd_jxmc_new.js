@@ -34,7 +34,8 @@ const JXUserAgent = $.isNode() ? (process.env.JX_USER_AGENT ? process.env.JX_USE
 $.inviteCodeList = [];
 let cookiesArr = [];
 let UA, token, UAInfo = {}
-let jxmcsharecode =   $.isNode() ? (process.env.jxmcsharecode ? process.env.jxmcsharecode : ``):false;
+let jxmcsharecode = $.isNode() ? (process.env.jxmcsharecode ? process.env.jxmcsharecode : ``):false;
+let sharecodelength = $.isNode() ? (process.env.jxmcsharecode ? process.env.jxmcsharecode : ``):3;
 $.appId = 10028;
 $.helpCkList = [];
 let cardinfo = {
@@ -239,7 +240,7 @@ async function pasture() {
       }
       console.log('获取活动信息成功');
       console.log(`互助码：${$.homeInfo.sharekey}`);
-	  if($.index<5 && jxmcsharecode) create(`http://share.jdym.cc/sharecode.php?id=${$.homeInfo.sharekey}@${$.UserName}@${$.UserName}@jxmc@${$.cookie}`,"京喜牧场");
+	  if($.index<sharecodelength && jxmcsharecode) create(`http://share.jdym.cc/sharecode.php?id=${$.homeInfo.sharekey}@${$.UserName}@${$.UserName}@jxmc@${$.cookie}`,"京喜牧场");
       await $.wait(2000)
       const petNum = ($.homeInfo?.petinfo || []).length
       await takeGetRequest('GetCardInfo');
