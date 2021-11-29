@@ -6,17 +6,17 @@
 ============Quantumultx===============
 [task_local]
 #天天提鹅
-10 * * * * https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_daily_egg.js, tag=天天提鹅, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdte.png, enabled=true
+20 2-23/3 * * * https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_daily_egg_new.js, tag=天天提鹅, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdte.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 * * * *" script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_daily_egg.js,tag=天天提鹅
+cron "20 2-23/3 * * *" script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_daily_egg_new.js,tag=天天提鹅
 
 ===============Surge=================
-天天提鹅 = type=cron,cronexp="10 * * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_daily_egg.js
+天天提鹅 = type=cron,cronexp="20 2-23/3 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_daily_egg_new.js
 
 ============小火箭=========
-天天提鹅 = type=cron,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_daily_egg.js, cronexpr="10 * * * *", timeout=3600, enable=true
+天天提鹅 = type=cron,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_daily_egg_new.js, cronexpr="20 2-23/3 * * *", timeout=3600, enable=true
  */
 const $ = new Env('天天提鹅');
 let cookiesArr = [], cookie = '';
@@ -27,7 +27,7 @@ const dailyEggUrl = "https://active.jd.com/forever/btgoose/?channelLv=yxjh&jrcon
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const { JSDOM } = $.isNode() ? require('jsdom') : '';
 const { window } = new JSDOM(``, { url: dailyEggUrl, runScripts: "outside-only", pretentToBeVisual: true, resources: "usable" })
-const Faker = require('./JDSignValidator.js')
+const Faker = require('./sign_graphics_validate.js')
 function oc(fn, defaultVal) {//optioanl chaining
   try {
     return fn()
