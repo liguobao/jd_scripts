@@ -2,23 +2,23 @@
 赚京豆脚本，一：做任务 天天领京豆(加速领京豆)、三：赚京豆-瓜分京豆
 Last Modified time: 2021-5-21 17:58:02
 活动入口：赚京豆(微信小程序)-赚京豆-签到领京豆
-更新地址：https://gitee.com/lxk0301/jd_scripts/raw/master/jd_syj.js
+更新地址：https://gitee.com/lxk0301/jd_scripts/raw/master/jd_zjd.js
 已支持IOS双京东账号, Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, 小火箭，JSBox, Node.js
 ============Quantumultx===============
 [task_local]
 #赚京豆
-10 8,21 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_syj.js, tag=赚京豆, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_syj.png, enabled=true
+10 1,4,5,7,8,12,16,21 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_zjd.js, tag=赚京豆, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_syj.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 8,21 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_syj.js, tag=赚京豆
+cron "10 1,4,5,7,8,12,16,21 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_zjd.js, tag=赚京豆
 
 ===============Surge=================
-赚京豆 = type=cron,cronexp="10 8,21 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_syj.js
+赚京豆 = type=cron,cronexp="10 1,4,5,7,8,12,16,21 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_zjd.js
 
 ============小火箭=========
-赚京豆 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_syj.js, cronexpr="10 8,21 * * *", timeout=3600, enable=true
+赚京豆 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_zjd.js, cronexpr="10 1,4,5,7,8,12,16,21 * * *", timeout=3600, enable=true
  */
 const $ = new Env('赚京豆');
 
@@ -544,7 +544,7 @@ async function distributeBeanActivity() {
 	  //console.log($.tuan)
 	  const code = Object.assign($.tuan, {"time": Date.now()});
 	  //console.log(code)
-	  $.tuanList.push(code);
+	  if(new Date().getHours() > 14) $.tuanList.push(code);
 	  if($.index<enablelength && enablesharecode) create(`http://share.jdym.cc/sharecode.php?id=${JSON.stringify(code)}@${$.UserName}@${$.UserName}@syj@${cookie}`,"赚京豆");
 	  await $.wait(2000)
     }
