@@ -28,8 +28,8 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
 const randomCount = $.isNode() ? 20 : 5;
 //IOS等用户直接用NobyDa的jd cookie
-let enablesharecode = $.isNode() ? (process.env.jxmcsharecode ? process.env.enablesharecode : ``):false;
-let enablelength = $.isNode() ? (process.env.jxmcsharecode ? process.env.enablelength : ``):0;
+let enablesharecode = $.isNode() ? (process.env.enablesharecode ? process.env.enablesharecode : ``):false;
+let enablelength = $.isNode() ? (process.env.enablelength ? process.env.enablelength : ``):0;
 let cookiesArr = [], cookie = '', message;
 $.tuanList = [];
 $.authorTuanList = [];
@@ -51,6 +51,9 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
   //await getAuthorShareCode('https://www.fastmock.site/mock/cbbb3764093b72da95d9396d19b9a901/jd/jd/jdsyj');
   //await getAuthorShareCode('https://raw.githubusercontent.com/gitupdate/updateTeam/master/shareCodes/jd_zz.json');
   //await getRandomCode();
+  await getShareCode("赚京豆")
+  //console.log($.tuanList)
+  
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -69,11 +72,13 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
-      if ($.canHelp && (cookiesArr.length > $.assistNum)) {
+      if ($.canHelp) {
         if ($.tuanList.length) console.log(`开始助力`)
         for (let j = 0; j < $.tuanList.length; ++j) {
-          console.log(`账号 ${$.UserName} 给 【${$.tuanList[j]['assistedPinEncrypted']}】助力`)
-          await helpFriendTuan($.tuanList[j])
+          $.tuanList_new = JSON.parse($.tuanList[j])
+		  //console.log($.tuanList.length)
+          console.log(`账号 ${$.UserName} 给 【${$.tuanList_new['assistedPinEncrypted']}】助力`)
+          await helpFriendTuan($.tuanList_new)
           await $.wait(2200)
           if(!$.canHelp) break
         }
@@ -535,9 +540,12 @@ async function distributeBeanActivity() {
       if ($.hasOpen) await getUserTuanInfo()
     }
     if ($.tuan && $.tuan.hasOwnProperty('assistedPinEncrypted') && $.assistStatus !== 3) {
-      $.tuanList.push($.tuan);
-	  //console.log($.tuan.assistedPinEncrypted)
-	  if($.index<enablelength && enablesharecode) create(`http://share.jdym.cc/sharecode.php?id=${$.tuan.assistedPinEncrypted}@${$.UserName}@${$.UserName}@syj@${$.cookie}`,"赚京豆");
+      //$.tuanList.push($.tuan);
+	  //console.log($.tuan)
+	  const code = Object.assign($.tuan, {"time": Date.now()});
+	  //console.log(code)
+	  $.tuanList.push(code);
+	  if($.index<enablelength && enablesharecode) create(`http://share.jdym.cc/sharecode.php?id=${JSON.stringify(code)}@${$.UserName}@${$.UserName}@syj@${cookie}`,"赚京豆");
 	  await $.wait(2000)
     }
   } catch (e) {
@@ -559,8 +567,10 @@ function getShareCode(name) {
           console.log(`${$.name} API请求失败，请检查网路重试`);
         } else {
           $.tuanList = JSON.parse(data);
-		  $.tuanList = $.tuanList.date;
-		  console.log($.tuanList);
+          //console.log($.tuanList['data'])
+          $.tuanList = $.tuanList['data']
+		  //$.tuanList = $.tuanList.date;
+		  //console.log(JSON.parse($.tuanList['data']))
         }
       } catch (e) {
         $.logErr(e, resp)
@@ -632,6 +642,8 @@ function helpFriendTuan(body) {
               else if (data.resultCode === '2400205') console.log('助力结果：团已满\n')
               else if (data.resultCode === '2400203') {console.log('助力结果：助力次数已耗尽\n');$.canHelp = false}
               else if (data.resultCode === '9000000') {console.log('助力结果：活动火爆，跳出\n');$.canHelp = false}
+			  else if (data.resultCode === '9000013') {console.log('助力结果：活动火爆，跳出\n');$.canHelp = false}
+			  else if (data.resultCode === '90000014') {console.log('助力结果：活动火爆，跳出\n');$.canHelp = false}
               else console.log(`助力结果：未知错误\n${JSON.stringify(data)}\n\n`)
             }
           }
