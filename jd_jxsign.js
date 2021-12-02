@@ -195,7 +195,7 @@ function signhb(type = 1) {
 				if ($.index === 1 && cookiesArr.length < 10){
 					$.shareCodes.push({
 					  'use': "0",
-					  'smp': "09b49f3eaea03f33bf2e3db1dfc8b368",
+					  'smp': "7aa3a9b16fb15b17af301879cd6eca48",
 					  'num': 0,
 					  'max': false
 					})
